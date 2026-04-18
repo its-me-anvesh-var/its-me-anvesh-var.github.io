@@ -428,19 +428,19 @@
 
   /* Blog expansion */
   .blog-content {
+    display: none;
     background: var(--black);
     border: 1px solid var(--border);
     border-top: none;
     border-radius: 0 0 8px 8px;
     padding: 0;
-    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.4s ease;
+    transition: all 0.4s ease;
     margin-top: -12px;
   }
 
   .blog-content.expanded {
-    max-height: 3000px;
+    display: block;
     padding: 24px;
     margin-bottom: 12px;
   }
@@ -888,7 +888,7 @@
       </div>
       <span class="blog-arrow" id="arrow-post1">→</span>
     </div>
-    <div class="blog-content" id="post1" style="display:none;">
+    <div class="blog-content" id="post1" >
       <div class="blog-full-text">
         <p><strong>The Digital Personal Data Protection (DPDP) Act 2023 is now in effect</strong>, and Indian startups — especially in fintech, edtech, and healthtech — need to understand what compliance actually looks like.</p>
         
@@ -933,7 +933,7 @@
       </div>
       <span class="blog-arrow" id="arrow-post2">→</span>
     </div>
-    <div class="blog-content" id="post2" style="display:none;">
+    <div class="blog-content" id="post2" >
       <div class="blog-full-text">
         <p>After building detection rules for SOC environments, these 5 Splunk queries are non-negotiable. They catch the most common attack patterns I've seen in real incidents.</p>
         
@@ -991,7 +991,7 @@
       </div>
       <span class="blog-arrow" id="arrow-post3">→</span>
     </div>
-    <div class="blog-content" id="post3" style="display:none;">
+    <div class="blog-content" id="post3" >
       <div class="blog-full-text">
         <p>You don't need expensive licenses to build a real SOC lab. Here's how I built mine using 100% free tools.</p>
         
@@ -1048,7 +1048,7 @@
       </div>
       <span class="blog-arrow" id="arrow-post4">→</span>
     </div>
-    <div class="blog-content" id="post4" style="display:none;">
+    <div class="blog-content" id="post4" >
       <div class="blog-full-text">
         <p>The Indian BFSI sector saw a 43% increase in cyber incidents in 2025. Here's what's actively targeting banks, fintechs, and insurance companies right now.</p>
         
@@ -1111,7 +1111,7 @@
       </div>
       <span class="blog-arrow" id="arrow-post5">→</span>
     </div>
-    <div class="blog-content" id="post5" style="display:none;">
+    <div class="blog-content" id="post5" >
       <div class="blog-full-text">
         <p>Most "SOC Analyst roadmaps" are written by people who've never worked in a SOC. Here's what actually works in India's job market.</p>
         
