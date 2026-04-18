@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anvesh Raju Vishwaraju — Cybersecurity Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: #7a6028;
+    --black: #080808;
+    --surface: #111111;
+    --surface2: #191919;
+    --border: #222200;
+    --white: #F0F0F0;
+    --gray: #888;
+    --gray-light: #bbb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Grid background */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Radial glow */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 780px; }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: clamp(42px, 7vw, 72px);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero-tagline {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    color: var(--gray-light);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: #000;
+    padding: 12px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    padding: 12px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* ── STATS BAR ── */
+  .stats {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+
+  .sec-header { margin-bottom: 48px; }
+
+  .sec-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .sec-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin-top: 16px;
+  }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    transition: background 0.3s;
+  }
+
+  .service-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-4px);
+  }
+
+  .service-card:hover::before {
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .service-price {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── REPOS ── */
+  .repos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  .repo-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .repo-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-3px);
+  }
+
+  .repo-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .repo-icon { font-size: 18px; }
+
+  .repo-name {
+    font-family: 'DM Sans', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .repo-desc {
+    font-size: 12.5px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .repo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    background: var(--surface2);
+    border: 1px solid #2a2200;
+    border-radius: 3px;
+    padding: 2px 8px;
+    font-size: 10px;
+    color: var(--gold-dim);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── BLOG ── */
+  .blog-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .blog-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
+  .blog-item:hover { border-color: var(--gold-dim); }
+
+  .blog-info { flex: 1; }
+
+  .blog-category {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .blog-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .blog-arrow {
+    color: var(--gold-dim);
+    font-size: 18px;
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .blog-item:hover .blog-arrow {
+    color: var(--gold);
+    transform: translateX(4px);
+  }
+
+  /* Blog expansion */
+  .blog-content {
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    margin-top: -12px;
+  }
+
+  .blog-content.expanded {
+    max-height: 3000px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .blog-full-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--gray-light);
+  }
+
+  .blog-full-text p {
+    margin-bottom: 16px;
+  }
+
+  .blog-full-text strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .blog-full-text pre {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px;
+    overflow-x: auto;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: var(--gold-light);
+    margin: 12px 0;
+  }
+
+  .blog-full-text em {
+    color: var(--gray);
+    font-style: italic;
+  }
+
+  .read-on-linkedin {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .read-on-linkedin:hover {
+    color: var(--gold-light);
+  }
+
+  .blog-arrow.rotated {
+    transform: rotate(90deg);
+  }
+
+  /* ── CERTS ── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .cert-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .cert-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+
+  .cert-valid {
+    font-size: 11px;
+    color: var(--gold-dim);
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+
+  .contact-sub {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 36px;
+  }
+
+  .contact-cards {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .contact-card {
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 28px;
+    text-align: center;
+    min-width: 200px;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .contact-card:hover::before {
+    left: 100%;
+  }
+
+  .contact-card.clickable {
+    cursor: pointer;
+  }
+
+  .contact-card.clickable:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(201,168,76,0.15);
+  }
+
+  .cc-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .cc-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .cc-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .cc-action {
+    font-size: 12px;
+    color: var(--gold-dim);
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+  }
+
+  .contact-card.clickable:hover .cc-action {
+    opacity: 1;
+    transform: translateY(0);
+    color: var(--gold);
+  }
+
+  .urgency-note {
+    font-size: 12px;
+    color: var(--gray);
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 24px 40px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  footer span { color: var(--gold); }
+
+  /* ── DIVIDER ── */
+  .full-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ARV</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Cybersecurity Professional · Hyderabad, India</div>
+    <h1>Anvesh <span>Raju</span><br>Vishwaraju</h1>
+    <p class="hero-tagline">SOC · Detection Engineering · Threat Intelligence · GRC</p>
+    <p class="hero-desc">
+      M.S. Cybersecurity — UNC Charlotte (USA) · M.Tech AI — Univ. of Hyderabad<br>
+      Lecturer at Malla Reddy College · Ex-Security Researcher, IDRBT (RBI's Institute)
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Hire Me</a>
+      <a href="#projects" class="btn-outline">View Projects</a>
+      <a href="https://linkedin.com/in/arv007" target="_blank" class="btn-outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">6+</div>
+    <div class="stat-label">Certifications</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">6</div>
+    <div class="stat-label">GitHub Projects</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3+</div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2</div>
+    <div class="stat-label">Masters Degrees</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">BFSI</div>
+    <div class="stat-label">Sector Focus</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-header">
+    <div class="sec-label">What I Offer</div>
+    <h2 class="sec-title">Freelance Services</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">🛡️</div>
+      <div class="service-title">Splunk Detection Rules</div>
+      <div class="service-desc">Custom MITRE ATT&CK mapped detection rules — brute force, lateral movement, exfiltration, PowerShell abuse, and more. Delivered as SPL with documentation.</div>
+      <div class="service-price">From $150 · 5 rules per pack</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <div class="service-title">Wazuh SIEM Setup & Tuning</div>
+      <div class="service-desc">End-to-end Wazuh deployment, agent configuration, custom rule writing, and dashboard setup. Turn-key open-source SIEM for SMBs and startups.</div>
+      <div class="service-price">From $200 · Delivered in 1 week</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🔎</div>
+      <div class="service-title">Threat Intel & OSINT Report</div>
+      <div class="service-desc">IOC enrichment across OTX, VirusTotal, Shodan. OSINT investigation on suspicious domains, IPs, and actors. TLP-classified deliverable in 24 hours.</div>
+      <div class="service-price">From $100 per investigation</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <div class="service-title">Security Policy Drafting</div>
+      <div class="service-desc">DPDP Act and ISO 27001 aligned security policies — Password, AUP, Incident Response, Data Classification, and more. Ready for audits in 5 days.</div>
+      <div class="service-price">From ₹15,000 · 3-policy pack</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <div class="service-title">Security Awareness Training</div>
+      <div class="service-desc">1-hour live training for non-technical staff — phishing, social engineering, safe browsing. Online or on-site. Includes PDF takeaway and quiz.</div>
+      <div class="service-price">From ₹8,000 per session</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <div class="service-title">SIEM Health Check</div>
+      <div class="service-desc">Audit your existing SIEM setup — log source coverage, MITRE ATT&CK gap analysis, alert tuning recommendations. Delivered as executive report.</div>
+      <div class="service-price">From $150 · Full gap report</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-header">
+    <div class="sec-label">GitHub Portfolio</div>
+    <h2 class="sec-title">Security Projects</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="repos-grid">
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/soc-home-lab" target="_blank">
+      <div class="repo-header">
+        <span class="repo-icon">🛡️</span>
+        <span class="repo-name">soc-home-lab</span>
+      </div>
+      <p class="repo-desc">Full home SOC lab — Wazuh + Splunk + Suricata with MITRE ATT&CK mapped detection rules and incident response playbooks.</p>
+      <div class="repo-tags">
+        <span class="tag">Splunk</span><span class="tag">Wazuh</span>
+        <span class="tag">MITRE ATT&CK</span><span class="tag">Detection Engineering</span>
+      </div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/bfsi-threat-intelligence" target="_blank">
+      <div class="repo-header">
+        <span class="repo-icon">🏦</span>
+        <span class="repo-name">bfsi-threat-intelligence</span>
+      </div>
+      <p class="repo-desc">BFSI sector threat intelligence — IOC enrichment automation, threat actor profiling, and India-focused threat landscape reports.</p>
+      <div class="repo-tags">
+        <span class="tag">Python</span><span class="tag">OTX AlienVault</span>
+        <span class="tag">BFSI</span><span class="tag">Threat Intel</span>
+      </div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/malware-analysis-api-security" target="_blank">
+      <div class="repo-header">
+        <span class="repo-icon">🦠</span>
+        <span class="repo-name">malware-analysis-api-security</span>
+      </div>
+      <p class="repo-desc">Malware analysis reports, YARA rules, and API security testing templates covering OWASP API Top 10 with Burp Suite findings.</p>
+      <div class="repo-tags">
+        <span class="tag">YARA</span><span class="tag">Burp Suite</span>
+        <span class="tag">REMnux</span><span class="tag">OWASP</span>
+      </div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/ml-soc-alert-classifier" target="_blank">
+      <div class="repo-header">
+        <span class="repo-icon">🤖</span>
+        <span class="repo-name">ml-soc-alert-classifier</span>
+      </div>
+      <p class="repo-desc">Machine learning model (Random Forest + SMOTE) to classify SOC alerts as true/false positive. Includes Flask API for real-time inference.</p>
+      <div class="repo-tags">
+        <span class="tag">Python</span><span class="tag">scikit-learn</span>
+        <span class="tag">Flask</span><span class="tag">SMOTE</span>
+      </div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/llm-threat-intel-summariser" target="_blank">
+      <div class="repo-header">
+        <span class="repo-icon">🧠</span>
+        <span class="repo-name">llm-threat-intel-summariser</span>
+      </div>
+      <p class="repo-desc">LLM-powered threat intelligence summariser using Claude API + OTX AlienVault + RSS feeds to auto-generate daily threat briefs.</p>
+      <div class="repo-tags">
+        <span class="tag">Claude API</span><span class="tag">Python</span>
+        <span class="tag">OTX</span><span class="tag">LLM</span>
+      </div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/adversarial-ml-security" target="_blank">
+      <div class="repo-header">
+        <span class="repo-icon">⚔️</span>
+        <span class="repo-name">adversarial-ml-security</span>
+      </div>
+      <p class="repo-desc">Adversarial ML attack simulation — FGSM and PGD attacks on neural networks with adversarial training defence. Research-grade implementation.</p>
+      <div class="repo-tags">
+        <span class="tag">PyTorch</span><span class="tag">FGSM</span>
+        <span class="tag">PGD</span><span class="tag">Adversarial ML</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="sec-header">
+    <div class="sec-label">Thought Leadership</div>
+    <h2 class="sec-title">Latest Writing</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="blog-list">
+
+    <!-- Post 1 -->
+    <div class="blog-item" onclick="togglePost('post1')">
+      <div class="blog-info">
+        <div class="blog-category">BFSI · Compliance</div>
+        <div class="blog-title">DPDP Act 2023 — What Indian Startups Actually Need To Do Right Now</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post1">→</span>
+    </div>
+    <div class="blog-content" id="post1" style="display:none;">
+      <div class="blog-full-text">
+        <p><strong>The Digital Personal Data Protection (DPDP) Act 2023 is now in effect</strong>, and Indian startups — especially in fintech, edtech, and healthtech — need to understand what compliance actually looks like.</p>
+        
+        <p><strong>Here's what you MUST do right now:</strong></p>
+        
+        <p><strong>1. Audit Your Data Flows</strong><br>
+        Map what personal data you collect, where it's stored, who has access, and why you need it. Most startups fail here because they've never documented their data lifecycle.</p>
+        
+        <p><strong>2. Implement Consent Mechanisms</strong><br>
+        Users must give <em>explicit, informed consent</em> before you collect their data. Pre-ticked boxes don't count. Your consent flow must be clear, specific, and revocable.</p>
+        
+        <p><strong>3. Appoint a Data Protection Officer (if required)</strong><br>
+        If you process significant volumes of data, you'll need a designated DPO. Even if not mandated, having someone accountable is good practice.</p>
+        
+        <p><strong>4. Update Your Privacy Policy</strong><br>
+        Your privacy policy must now explain:<br>
+        • What data you collect and why<br>
+        • How long you retain it<br>
+        • How users can access, correct, or delete their data<br>
+        • Your breach notification process</p>
+        
+        <p><strong>5. Build a Breach Response Plan</strong><br>
+        DPDP requires breach notification to the Data Protection Board (DPBI) and affected users. You need a documented incident response process — now, not when a breach happens.</p>
+        
+        <p><strong>6. Review Third-Party Vendors</strong><br>
+        Every SaaS tool, payment gateway, and analytics platform you use is a data processor. Ensure they're DPDP-compliant or you're liable for their violations.</p>
+        
+        <p><strong>Penalties?</strong> Up to ₹250 crore for violations. The Act gives DPBI wide enforcement powers.</p>
+        
+        <p><strong>Timeline?</strong> Rules are still being drafted, but don't wait. Start with basics: data mapping, consent flows, and breach response. These take months to implement properly.</p>
+        
+        <p><em>Need help with DPDP gap analysis or compliance roadmap? DM me.</em></p>
+      </div>
+      <a href="https://linkedin.com/in/arv007" class="read-on-linkedin" target="_blank">Discuss on LinkedIn →</a>
+    </div>
+
+    <!-- Post 2 -->
+    <div class="blog-item" onclick="togglePost('post2')">
+      <div class="blog-info">
+        <div class="blog-category">Detection Engineering</div>
+        <div class="blog-title">5 Splunk Detection Rules Every SOC Analyst Should Have</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post2">→</span>
+    </div>
+    <div class="blog-content" id="post2" style="display:none;">
+      <div class="blog-full-text">
+        <p>After building detection rules for SOC environments, these 5 Splunk queries are non-negotiable. They catch the most common attack patterns I've seen in real incidents.</p>
+        
+        <p><strong>1. Brute Force Detection (RDP + SSH)</strong></p>
+        <pre>index=main sourcetype=WinEventLog:Security EventCode=4625
+| stats count by src_ip, user, host
+| where count > 10
+| eval severity="HIGH"</pre>
+        <p><em>Why:</em> Brute force is still the #1 initial access method. 10+ failed logins from one IP in a short window = investigate immediately.</p>
+        
+        <p><strong>2. After-Hours Admin Login</strong></p>
+        <pre>index=main sourcetype=WinEventLog:Security EventCode=4624
+| eval hour=strftime(_time, "%H")
+| where (hour < 8 OR hour > 20) AND match(user, "(?i)admin")
+| table _time, user, src_ip, host</pre>
+        <p><em>Why:</em> Legitimate admins rarely work at 3 AM. This catches compromised accounts and insider threats.</p>
+        
+        <p><strong>3. PowerShell Download Cradle</strong></p>
+        <pre>index=main sourcetype=WinEventLog:Security EventCode=4688
+  New_Process_Name="*powershell*"
+| where match(Process_Command_Line, 
+    "(?i)invoke-webrequest|iwr|downloadstring")
+| table _time, user, Process_Command_Line, host</pre>
+        <p><em>Why:</em> 90% of malware droppers use PowerShell to fetch payloads. Catches Emotet, Cobalt Strike, and most ransomware.</p>
+        
+        <p><strong>4. Large Data Exfiltration</strong></p>
+        <pre>index=network sourcetype=firewall_logs
+| stats sum(bytes_out) as total_bytes by src_ip, dest_ip
+| where total_bytes > 104857600
+| eval total_mb=round(total_bytes/1024/1024, 2)</pre>
+        <p><em>Why:</em> Data theft happens in bulk. 100MB+ transfers to external IPs = investigate the destination and what was sent.</p>
+        
+        <p><strong>5. New Local Admin Account Created</strong></p>
+        <pre>index=main sourcetype=WinEventLog:Security EventCode=4720
+| table _time, user, TargetUserName, host
+| eval severity="CRITICAL"</pre>
+        <p><em>Why:</em> Attackers create backdoor admin accounts for persistence. Every new account creation should be verified.</p>
+        
+        <p><strong>Pro Tips:</strong><br>
+        • Set these to run every 5 minutes<br>
+        • Alert on High/Critical only to avoid fatigue<br>
+        • Map each to MITRE ATT&CK techniques<br>
+        • Test with attack simulations (use Atomic Red Team)</p>
+        
+        <p>These 5 rules cover: Initial Access (T1110), Execution (T1059), Persistence (T1136), and Exfiltration (T1041). That's 80% of real-world incidents.</p>
+      </div>
+      <a href="https://linkedin.com/in/arv007" class="read-on-linkedin" target="_blank">Discuss on LinkedIn →</a>
+    </div>
+
+    <!-- Post 3 -->
+    <div class="blog-item" onclick="togglePost('post3')">
+      <div class="blog-info">
+        <div class="blog-category">Home Lab</div>
+        <div class="blog-title">How I Built a Home SOC Lab for ₹0 Using Free Open-Source Tools</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post3">→</span>
+    </div>
+    <div class="blog-content" id="post3" style="display:none;">
+      <div class="blog-full-text">
+        <p>You don't need expensive licenses to build a real SOC lab. Here's how I built mine using 100% free tools.</p>
+        
+        <p><strong>My Stack:</strong><br>
+        • <strong>Wazuh</strong> — SIEM + HIDS (replaces Splunk Enterprise for learning)<br>
+        • <strong>Suricata</strong> — Network IDS (replaces Cisco Firepower)<br>
+        • <strong>VirtualBox</strong> — Hypervisor (free, runs on any laptop)<br>
+        • <strong>Kali Linux</strong> — Attacker VM<br>
+        • <strong>Windows 11</strong> + <strong>Ubuntu 22.04</strong> — Victim VMs</p>
+        
+        <p><strong>Architecture:</strong><br>
+        Host-Only Network (192.168.56.0/24):<br>
+        • 192.168.56.10 — Wazuh Manager (Ubuntu)<br>
+        • 192.168.56.20 — Windows 11 (with Wazuh agent)<br>
+        • 192.168.56.30 — Ubuntu web server (with agent)<br>
+        • 192.168.56.40 — Kali attacker</p>
+        
+        <p><strong>What I Can Do:</strong><br>
+        ✅ Simulate brute force attacks (Hydra → triggers Wazuh alert)<br>
+        ✅ Test malware (safely in isolated VM)<br>
+        ✅ Practice incident response with real playbooks<br>
+        ✅ Write custom detection rules mapped to MITRE ATT&CK<br>
+        ✅ Monitor file integrity, process creation, network traffic</p>
+        
+        <p><strong>Setup Time:</strong> One weekend. Wazuh install takes 20 minutes, agents take 5 minutes each.</p>
+        
+        <p><strong>Why This Matters:</strong><br>
+        Employers want hands-on experience. Saying "I have a home lab where I detected lateral movement using Wazuh FIM" in an interview >>>>> "I know SIEM theory."</p>
+        
+        <p><strong>Cost Breakdown:</strong><br>
+        • Wazuh: Free<br>
+        • Suricata: Free<br>
+        • VirtualBox: Free<br>
+        • Kali Linux: Free<br>
+        • Windows 11: Free (evaluation license, 90 days)<br>
+        • Ubuntu: Free<br>
+        <strong>Total: ₹0</strong></p>
+        
+        <p><strong>Resources I Used:</strong><br>
+        • Wazuh docs: documentation.wazuh.com<br>
+        • My GitHub: SOC home lab with all detection rules and playbooks<br>
+        • MITRE ATT&CK: attack.mitre.org for mapping techniques</p>
+        
+        <p>If you're trying to break into SOC but lack experience, build this lab. Takes one weekend. Puts you ahead of 90% of applicants.</p>
+      </div>
+      <a href="https://linkedin.com/in/arv007" class="read-on-linkedin" target="_blank">Discuss on LinkedIn →</a>
+    </div>
+
+    <!-- Post 4 -->
+    <div class="blog-item" onclick="togglePost('post4')">
+      <div class="blog-info">
+        <div class="blog-category">Threat Intelligence</div>
+        <div class="blog-title">BFSI Threat Landscape India 2026 — Top Actors & Attack Vectors</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post4">→</span>
+    </div>
+    <div class="blog-content" id="post4" style="display:none;">
+      <div class="blog-full-text">
+        <p>The Indian BFSI sector saw a 43% increase in cyber incidents in 2025. Here's what's actively targeting banks, fintechs, and insurance companies right now.</p>
+        
+        <p><strong>Top Threat Actors:</strong></p>
+        
+        <p><strong>1. SideCopy (Pakistan-linked APT)</strong><br>
+        <em>Target:</em> Indian banks + government<br>
+        <em>TTPs:</em> Spear phishing → malicious LNK files → RAT deployment<br>
+        <em>Recent Activity:</em> Q1 2026 campaigns targeting bank employees<br>
+        <em>MITRE:</em> T1566.001, T1204.002</p>
+        
+        <p><strong>2. Lazarus Group (North Korea)</strong><br>
+        <em>Target:</em> Banks (SWIFT fraud), cryptocurrency exchanges<br>
+        <em>TTPs:</em> Supply chain attacks, watering hole, social engineering<br>
+        <em>Notable:</em> Bangladesh Bank heist ($81M) — same methods still active<br>
+        <em>MITRE:</em> T1195, T1078</p>
+        
+        <p><strong>3. Local Cybercrime Groups</strong><br>
+        <em>Target:</em> UPI users, retail banking customers<br>
+        <em>TTPs:</em> Vishing, SIM swap, fake banking apps, QR code fraud<br>
+        <em>Volume:</em> Highest threat by incident count — thousands daily</p>
+        
+        <p><strong>Top Attack Vectors 2026:</strong></p>
+        
+        <p><strong>Phishing — #1 Threat</strong><br>
+        44% of BFSI-targeted attacks start with phishing (up from 38% in 2025).<br>
+        Common lures:<br>
+        • Fake HDFC/SBI/ICICI security alerts<br>
+        • Fake RBI KYC update notices<br>
+        • Fake income tax refund notifications</p>
+        
+        <p><strong>Ransomware</strong><br>
+        Most active families: LockBit 3.0, BlackCat, Cl0p<br>
+        Average ransom demand (India BFSI): ₹2–8 crore<br>
+        Initial access: RDP (41%), Phishing (35%), VPN vuln (24%)</p>
+        
+        <p><strong>API Security Attacks</strong><br>
+        With UPI and open banking APIs, API attacks tripled since 2024:<br>
+        • BOLA/IDOR (broken object level authorization)<br>
+        • Rate limiting bypass for OTP brute force<br>
+        • JWT token manipulation</p>
+        
+        <p><strong>What BFSI Teams Should Do:</strong><br>
+        ✅ Deploy email security gateway (DMARC enforcement)<br>
+        ✅ Enable MFA on all privileged accounts<br>
+        ✅ Implement SIEM with BFSI-specific detection rules<br>
+        ✅ Conduct DPDP Act gap assessment<br>
+        ✅ Join BFSI-ISAC for threat intel sharing</p>
+        
+        <p>Full threat report with IOCs available on my GitHub: <em>bfsi-threat-intelligence</em></p>
+      </div>
+      <a href="https://linkedin.com/in/arv007" class="read-on-linkedin" target="_blank">Discuss on LinkedIn →</a>
+    </div>
+
+    <!-- Post 5 -->
+    <div class="blog-item" onclick="togglePost('post5')">
+      <div class="blog-info">
+        <div class="blog-category">Career</div>
+        <div class="blog-title">From Student to SOC Analyst — Honest Roadmap for Indian Freshers</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post5">→</span>
+    </div>
+    <div class="blog-content" id="post5" style="display:none;">
+      <div class="blog-full-text">
+        <p>Most "SOC Analyst roadmaps" are written by people who've never worked in a SOC. Here's what actually works in India's job market.</p>
+        
+        <p><strong>Reality Check First:</strong><br>
+        • Entry-level SOC roles pay ₹3.5–6 LPA in tier-1 cities<br>
+        • You'll start as L1 (alert triage, not threat hunting)<br>
+        • 80% of the job is following playbooks, not hacking<br>
+        • Night shifts are common in the first 1–2 years</p>
+        
+        <p><strong>The Actual Roadmap:</strong></p>
+        
+        <p><strong>Phase 1: Foundations (3 months)</strong><br>
+        ✅ Networking basics: TCP/IP, DNS, HTTP/S, ports<br>
+        ✅ Windows + Linux fundamentals (not advanced)<br>
+        ✅ Learn how to read logs (Windows Event Logs, Syslog)<br>
+        ✅ Understand MITRE ATT&CK framework<br>
+        <em>Free resource:</em> Professor Messer's Security+ course on YouTube</p>
+        
+        <p><strong>Phase 2: Core Skills (3–4 months)</strong><br>
+        ✅ Get CompTIA Security+ (₹25,000 exam, worth it)<br>
+        ✅ Learn one SIEM: Splunk (free trial) or Wazuh (open source)<br>
+        ✅ Build a home lab (see my post on this)<br>
+        ✅ Write 5–10 detection rules mapped to MITRE<br>
+        <em>GitHub matters:</em> Document everything you build</p>
+        
+        <p><strong>Phase 3: Hands-On Practice (2–3 months)</strong><br>
+        ✅ TryHackMe: SOC Level 1 path<br>
+        ✅ LetsDefend: Real SOC scenarios<br>
+        ✅ CyberDefenders: Blue team CTFs<br>
+        ✅ Practice writing incident reports<br>
+        <em>Pro tip:</em> Employers ask "walk me through how you'd investigate a phishing alert" — have an answer ready</p>
+        
+        <p><strong>Phase 4: Apply (Ongoing)</strong><br>
+        Target companies:<br>
+        • MSSPs: Tata TCS, Accenture SOCs, IBM X-Force<br>
+        • Banks: HDFC, ICICI, SBI (have internal SOCs)<br>
+        • Product companies: Zscaler, Palo Alto, Crowdstrike India<br>
+        • Startups: Often hire L1 analysts, pay similar to MNCs</p>
+        
+        <p><strong>Resume Tips:</strong><br>
+        ❌ Don't write: "Knowledge of SIEM tools"<br>
+        ✅ Write: "Built Wazuh SIEM with 15 custom detection rules covering MITRE T1110, T1566, T1059"</p>
+        
+        <p><strong>Common Mistakes:</strong><br>
+        • Chasing CEH before Security+ (CEH is expensive, not needed for L1)<br>
+        • Focusing on penetration testing (that's offensive, SOC is defensive)<br>
+        • Not documenting your lab work on GitHub<br>
+        • Waiting for "the perfect time" to start (start messy, improve later)</p>
+        
+        <p><strong>Timeline:</strong> 8–12 months from zero to first SOC job if you're consistent. Don't rush certifications — build real skills.</p>
+        
+        <p>Questions? DM me. I was exactly where you are 3 years ago.</p>
+      </div>
+      <a href="https://linkedin.com/in/arv007" class="read-on-linkedin" target="_blank">Discuss on LinkedIn →</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="sec-header">
+    <div class="sec-label">Credentials</div>
+    <h2 class="sec-title">Certifications</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="certs-grid">
+
+    <div class="cert-card">
+      <div class="cert-badge">🛡️</div>
+      <div>
+        <div class="cert-name">CompTIA Security+</div>
+        <div class="cert-valid">Valid: Feb 2027</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">⚔️</div>
+      <div>
+        <div class="cert-name">eJPTv2 — eLearnSecurity</div>
+        <div class="cert-valid">Valid: Jul 2027</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">☁️</div>
+      <div>
+        <div class="cert-name">AWS Cloud Practitioner</div>
+        <div class="cert-valid">Valid: Sep 2026</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">🔐</div>
+      <div>
+        <div class="cert-name">CASA-APIsec</div>
+        <div class="cert-valid">Jan 2025</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">🕵️</div>
+      <div>
+        <div class="cert-name">TCM Security: OSINT</div>
+        <div class="cert-valid">Jun 2024</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">💻</div>
+      <div>
+        <div class="cert-name">TCM: Privilege Escalation</div>
+        <div class="cert-valid">Jun 2024</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">🎯</div>
+      <div>
+        <div class="cert-name">TryHackMe: Jr. Pen Tester</div>
+        <div class="cert-valid">Completed</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-title">Let's Work Together</h2>
+    <p class="contact-sub">Available for freelance projects, guest lectures, and consulting engagements.</p>
+
+    <div class="contact-cards">
+      <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." 
+         class="contact-card clickable" target="_blank">
+        <div class="cc-icon">💬</div>
+        <div class="cc-label">WhatsApp / Call</div>
+        <div class="cc-value">+91 79812 93129</div>
+        <div class="cc-action">Send Message →</div>
+      </a>
+      
+      <a href="mailto:anvesh65422@gmail.com?subject=Project%20Inquiry%20from%20Portfolio&body=Hi%20Anvesh,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss:%0D%0A%0D%0A[Describe%20your%20project%20or%20inquiry%20here]%0D%0A%0D%0ARegards," 
+         class="contact-card clickable">
+        <div class="cc-icon">✉️</div>
+        <div class="cc-label">Email</div>
+        <div class="cc-value">anvesh65422@gmail.com</div>
+        <div class="cc-action">Compose Email →</div>
+      </a>
+      
+      <a href="https://linkedin.com/in/arv007" 
+         class="contact-card clickable" target="_blank">
+        <div class="cc-icon">🔗</div>
+        <div class="cc-label">LinkedIn</div>
+        <div class="cc-value">linkedin.com/in/arv007</div>
+        <div class="cc-action">Connect →</div>
+      </a>
+    </div>
+
+    <p class="urgency-note">⚡ Response guaranteed within 24 hours</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Anvesh Raju Vishwaraju</span> · Cybersecurity Professional · Hyderabad, India</p>
+</footer>
+
+<script>
+function togglePost(postId) {
+  const content = document.getElementById(postId);
+  const arrow = document.getElementById('arrow-' + postId);
+  
+  // Close all other posts
+  const allContents = document.querySelectorAll('.blog-content');
+  const allArrows = document.querySelectorAll('.blog-arrow');
+  
+  allContents.forEach(c => {
+    if (c.id !== postId) {
+      c.classList.remove('expanded');
+    }
+  });
+  
+  allArrows.forEach(a => {
+    if (a.id !== 'arrow-' + postId) {
+      a.classList.remove('rotated');
+    }
+  });
+  
+  // Toggle current post
+  content.classList.toggle('expanded');
+  arrow.classList.toggle('rotated');
+}
+</script>
+
+</body>
+</html>
