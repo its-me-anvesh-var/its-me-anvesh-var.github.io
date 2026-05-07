@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Skills Matrix — Anvesh Raju Vishwaraju</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: #7a6028;
+    --black: #080808;
+    --surface: #111111;
+    --surface2: #191919;
+    --border: #222200;
+    --white: #F0F0F0;
+    --gray: #888;
+    --gray-light: #bbb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--gold); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    padding: 140px 40px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    top: 80px; left: -100px;
+    width: 500px; height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .sec-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .sec-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .sec-desc {
+    font-size: 14px;
+    color: var(--gray);
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  /* ── SKILLS ── */
+  .skills-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  .skill-section {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    transition: border-color 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.45s ease forwards;
+  }
+
+  .skill-section:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+  }
+
+  .skill-section:nth-child(1)  { animation-delay: 0.05s; }
+  .skill-section:nth-child(2)  { animation-delay: 0.10s; }
+  .skill-section:nth-child(3)  { animation-delay: 0.15s; }
+  .skill-section:nth-child(4)  { animation-delay: 0.20s; }
+  .skill-section:nth-child(5)  { animation-delay: 0.25s; }
+  .skill-section:nth-child(6)  { animation-delay: 0.30s; }
+  .skill-section:nth-child(7)  { animation-delay: 0.35s; }
+  .skill-section:nth-child(8)  { animation-delay: 0.40s; }
+  .skill-section:nth-child(9)  { animation-delay: 0.45s; }
+  .skill-section:nth-child(10) { animation-delay: 0.50s; }
+  .skill-section:nth-child(11) { animation-delay: 0.55s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .skill-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.65rem 1.1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    transition: background 0.3s;
+  }
+
+  .skill-section:hover .skill-header::before {
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .skill-icon {
+    font-size: 14px;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+
+  .skill-section:hover .skill-icon { color: var(--gold); }
+
+  .skill-title {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .skill-section:hover .skill-title { color: var(--gray-light); }
+
+  .skill-body {
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    background: var(--surface2);
+  }
+
+  /* ── TAGS ── */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11.5px;
+    font-weight: 400;
+    padding: 3px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    letter-spacing: 0.2px;
+  }
+
+  .tag:hover { opacity: 0.7; }
+
+  .tag-purple { background: rgba(83,74,183,0.18);  color: #b8a9f5; border: 1px solid rgba(83,74,183,0.25); }
+  .tag-teal   { background: rgba(15,110,86,0.18);   color: #5ddcb0; border: 1px solid rgba(15,110,86,0.25); }
+  .tag-coral  { background: rgba(153,60,29,0.18);   color: #f5a07a; border: 1px solid rgba(153,60,29,0.28); }
+  .tag-blue   { background: rgba(24,95,165,0.18);   color: #72b8f5; border: 1px solid rgba(24,95,165,0.25); }
+  .tag-amber  { background: rgba(201,168,76,0.12);  color: var(--gold-light); border: 1px solid rgba(201,168,76,0.22); }
+  .tag-pink   { background: rgba(153,53,86,0.18);   color: #e89ad4; border: 1px solid rgba(153,53,86,0.25); }
+  .tag-green  { background: rgba(59,109,17,0.18);   color: #80d96a; border: 1px solid rgba(59,109,17,0.25); }
+  .tag-gray   { background: var(--surface); color: var(--gray); border: 1px solid #2a2200; }
+
+  .cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 3px;
+    background: rgba(201,168,76,0.1);
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    letter-spacing: 0.3px;
+  }
+
+  /* ── FOOTER ── */
+  .full-divider { width: 100%; height: 1px; background: var(--border); }
+
+  footer {
+    padding: 24px 40px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  footer p { font-size: 12px; color: var(--gray); }
+  footer span { color: var(--gold); }
+  footer a { color: var(--gold-dim); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    nav { padding: 12px 20px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 11px; }
+    .page-hero { padding: 110px 20px 40px; }
+    .skills-wrapper { padding: 0 20px 60px; }
+    .sec-title { font-size: 30px; }
+    .tag { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">ARV</a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
+    <li><a href="index.html#certs">Certifications</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="skills-matrix.html" class="active">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="sec-label">Technical Expertise</div>
+  <h1 class="sec-title">Skills Matrix</h1>
+  <div class="sec-rule"></div>
+  <p class="sec-desc">Hands-on across the full security stack — detection engineering, threat intelligence, cloud security, IAM, and AI-native tooling.</p>
+</div>
+
+<!-- SKILLS -->
+<div class="skills-wrapper">
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">SIEM & Monitoring</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-purple">Splunk (SPL, dashboards, alert tuning)</span>
+      <span class="tag tag-purple">Wazuh HIDS</span>
+      <span class="tag tag-purple">Azure Sentinel</span>
+      <span class="tag tag-purple">Suricata IDS</span>
+      <span class="tag tag-gray">Real-time alert triage</span>
+      <span class="tag tag-gray">Incident escalation</span>
+      <span class="tag tag-gray">MITRE ATT&CK mapping</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Threat Detection & Incident Response</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-coral">MITRE ATT&CK</span>
+      <span class="tag tag-coral">Sigma rules</span>
+      <span class="tag tag-coral">YARA rules</span>
+      <span class="tag tag-coral">IOC enrichment</span>
+      <span class="tag tag-coral">NIST SP 800-61 IR lifecycle</span>
+      <span class="tag tag-gray">Phishing investigation</span>
+      <span class="tag tag-gray">Malware analysis</span>
+      <span class="tag tag-gray">Brute-force detection</span>
+      <span class="tag tag-gray">Log correlation</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Threat Intelligence</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-teal">ThreatConnect</span>
+      <span class="tag tag-teal">MISP</span>
+      <span class="tag tag-teal">OTX AlienVault</span>
+      <span class="tag tag-teal">VirusTotal</span>
+      <span class="tag tag-teal">Shodan</span>
+      <span class="tag tag-gray">IOC enrichment</span>
+      <span class="tag tag-gray">Advisory report generation</span>
+      <span class="tag tag-gray">Threat actor profiling</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">IAM & Identity</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-blue">Active Directory</span>
+      <span class="tag tag-blue">Azure AD / Entra ID</span>
+      <span class="tag tag-blue">Conditional Access</span>
+      <span class="tag tag-blue">MFA</span>
+      <span class="tag tag-blue">PIM</span>
+      <span class="tag tag-blue">ADFS</span>
+      <span class="tag tag-blue">SCIM</span>
+      <span class="tag tag-blue">SAML 2.0</span>
+      <span class="tag tag-blue">OAuth 2.0</span>
+      <span class="tag tag-gray">Provisioning & deprovisioning</span>
+      <span class="tag tag-gray">GPO / RBAC / OU management</span>
+      <span class="tag tag-gray">Access reviews</span>
+      <span class="tag tag-gray">Least privilege enforcement</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Cloud Security</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-amber">AWS IAM</span>
+      <span class="tag tag-amber">CloudTrail</span>
+      <span class="tag tag-amber">GuardDuty</span>
+      <span class="tag tag-amber">S3 bucket policies</span>
+      <span class="tag tag-amber">VPC security groups</span>
+      <span class="tag tag-amber">Azure security baseline</span>
+      <span class="cert-badge">★ AWS CCP Certified</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Network & Endpoint Security</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-teal">TCP/IP</span>
+      <span class="tag tag-teal">DNS</span>
+      <span class="tag tag-teal">HTTP/S</span>
+      <span class="tag tag-teal">Wireshark</span>
+      <span class="tag tag-teal">Nmap</span>
+      <span class="tag tag-teal">Firewalls</span>
+      <span class="tag tag-teal">IDS/IPS</span>
+      <span class="tag tag-teal">VPN</span>
+      <span class="tag tag-gray">Traffic analysis</span>
+      <span class="tag tag-gray">Endpoint hardening</span>
+      <span class="tag tag-gray">Vulnerability scanning (Nessus)</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Penetration Testing</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-pink">Metasploit</span>
+      <span class="tag tag-pink">Burp Suite</span>
+      <span class="tag tag-pink">OWASP Top 10</span>
+      <span class="tag tag-pink">PortSwigger Web Academy</span>
+      <span class="cert-badge">★ eJPTv2 Certified</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">API Security</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-coral">OWASP API Top 10</span>
+      <span class="tag tag-coral">REST API security testing</span>
+      <span class="tag tag-coral">API authentication flaws</span>
+      <span class="cert-badge">★ CASA-APIsec Certified</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Scripting & Automation</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-green">Python</span>
+      <span class="tag tag-green">PowerShell</span>
+      <span class="tag tag-green">Bash</span>
+      <span class="tag tag-green">Flask</span>
+      <span class="tag tag-green">FastAPI</span>
+      <span class="tag tag-green">scikit-learn</span>
+      <span class="tag tag-gray">API integrations</span>
+      <span class="tag tag-gray">Log parsing</span>
+      <span class="tag tag-gray">IOC automation</span>
+      <span class="tag tag-gray">AD scripting</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Frameworks & Standards</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-purple">NIST CSF</span>
+      <span class="tag tag-purple">NIST SP 800-61</span>
+      <span class="tag tag-purple">MITRE ATT&CK</span>
+      <span class="tag tag-purple">CIS Controls</span>
+      <span class="tag tag-purple">ISO 27001 (awareness)</span>
+      <span class="tag tag-gray">Incident response lifecycle</span>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Tools & Platforms</span>
+    </div>
+    <div class="skill-body">
+      <span class="tag tag-gray">REMnux</span>
+      <span class="tag tag-gray">FlareVM</span>
+      <span class="tag tag-gray">VirtualBox</span>
+      <span class="tag tag-gray">VMware</span>
+      <span class="tag tag-gray">Linux (Ubuntu / Kali)</span>
+      <span class="tag tag-gray">Windows Server</span>
+      <span class="tag tag-gray">ServiceNow (conceptual)</span>
+      <span class="tag tag-gray">Git / GitHub</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="full-divider"></div>
+
+<footer>
+  <p>© 2026 <span>Anvesh Raju Vishwaraju</span> · Cybersecurity Professional · Hyderabad, India &nbsp;·&nbsp; <a href="index.html">← Back to Portfolio</a></p>
+</footer>
+
+</body>
+</html>
