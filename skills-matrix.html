@@ -3,103 +3,212 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Skills Matrix — Anvesh</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;500;600&display=swap" rel="stylesheet" />
+<title>Skills Matrix — Anvesh Raju Vishwaraju</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #0d0f12;
-    --surface: #13161b;
-    --surface2: #1a1e25;
-    --border: rgba(255,255,255,0.07);
-    --border-strong: rgba(255,255,255,0.13);
-    --text: #e8eaf0;
-    --muted: #7a8090;
-    --accent: #4fc3f7;
-
-    --purple-bg: #1e1a3a; --purple-text: #b8a9f5;
-    --teal-bg: #0d2820; --teal-text: #5ddcb0;
-    --coral-bg: #2a1510; --coral-text: #f5a07a;
-    --blue-bg: #0d1e30; --blue-text: #72b8f5;
-    --amber-bg: #271a08; --amber-text: #f5c060;
-    --pink-bg: #25102a; --pink-text: #e89ad4;
-    --green-bg: #0d2010; --green-text: #80d96a;
-    --gray-bg: #181c22; --gray-text: #a0a8b5;
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: #7a6028;
+    --black: #080808;
+    --surface: #111111;
+    --surface2: #191919;
+    --border: #222200;
+    --white: #F0F0F0;
+    --gray: #888;
+    --gray-light: #bbb;
   }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    padding: 3rem 1.5rem;
-    min-height: 100vh;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
   }
 
-  .skills-wrapper {
-    max-width: 860px;
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--gold); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    padding: 140px 40px 60px;
+    max-width: 1100px;
     margin: 0 auto;
+    position: relative;
   }
 
-  .skills-header {
-    margin-bottom: 2.5rem;
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    top: 80px; left: -100px;
+    width: 500px; height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
   }
 
-  .skills-header h2 {
-    font-size: 11px;
-    font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: 0.18em;
-    color: var(--accent);
+  .sec-label {
+    font-size: 10px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
   }
 
-  .skills-header p {
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.2;
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 12px;
   }
 
-  .section {
-    border: 0.5px solid var(--border);
-    border-radius: 12px;
+  .sec-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .sec-desc {
+    font-size: 14px;
+    color: var(--gray);
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  /* ── SKILLS ── */
+  .skills-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  .skill-section {
+    border: 1px solid var(--border);
+    border-radius: 8px;
     overflow: hidden;
     margin-bottom: 10px;
-    transition: border-color 0.2s;
+    transition: border-color 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.45s ease forwards;
   }
 
-  .section:hover {
-    border-color: var(--border-strong);
+  .skill-section:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
   }
 
-  .section-header {
+  .skill-section:nth-child(1)  { animation-delay: 0.05s; }
+  .skill-section:nth-child(2)  { animation-delay: 0.10s; }
+  .skill-section:nth-child(3)  { animation-delay: 0.15s; }
+  .skill-section:nth-child(4)  { animation-delay: 0.20s; }
+  .skill-section:nth-child(5)  { animation-delay: 0.25s; }
+  .skill-section:nth-child(6)  { animation-delay: 0.30s; }
+  .skill-section:nth-child(7)  { animation-delay: 0.35s; }
+  .skill-section:nth-child(8)  { animation-delay: 0.40s; }
+  .skill-section:nth-child(9)  { animation-delay: 0.45s; }
+  .skill-section:nth-child(10) { animation-delay: 0.50s; }
+  .skill-section:nth-child(11) { animation-delay: 0.55s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .skill-header {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 0.65rem 1.1rem;
     background: var(--surface);
-    border-bottom: 0.5px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
   }
 
-  .section-icon {
-    font-size: 15px;
-    color: var(--muted);
+  .skill-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    transition: background 0.3s;
+  }
+
+  .skill-section:hover .skill-header::before {
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .skill-icon {
+    font-size: 14px;
+    color: var(--gold-dim);
     flex-shrink: 0;
+    transition: color 0.2s;
   }
 
-  .section-title {
-    font-family: 'IBM Plex Mono', monospace;
+  .skill-section:hover .skill-icon { color: var(--gold); }
+
+  .skill-title {
     font-size: 10.5px;
     font-weight: 500;
-    letter-spacing: 0.12em;
-    color: var(--muted);
+    letter-spacing: 2px;
+    color: var(--gray);
     text-transform: uppercase;
+    transition: color 0.2s;
   }
 
-  .section-body {
+  .skill-section:hover .skill-title { color: var(--gray-light); }
+
+  .skill-body {
     padding: 0.75rem 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -107,119 +216,101 @@
     background: var(--surface2);
   }
 
+  /* ── TAGS ── */
   .tag {
     display: inline-flex;
     align-items: center;
-    font-size: 12px;
-    font-family: 'IBM Plex Mono', monospace;
-    padding: 3px 10px;
-    border-radius: 4px;
-    white-space: nowrap;
+    font-size: 11.5px;
     font-weight: 400;
-    border: 0.5px solid transparent;
+    padding: 3px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
     transition: opacity 0.15s;
+    letter-spacing: 0.2px;
   }
 
-  .tag:hover { opacity: 0.8; }
+  .tag:hover { opacity: 0.7; }
 
-  .tag-purple { background: var(--purple-bg); color: var(--purple-text); border-color: rgba(184,169,245,0.15); }
-  .tag-teal   { background: var(--teal-bg);   color: var(--teal-text);   border-color: rgba(93,220,176,0.15); }
-  .tag-coral  { background: var(--coral-bg);  color: var(--coral-text);  border-color: rgba(245,160,122,0.15); }
-  .tag-blue   { background: var(--blue-bg);   color: var(--blue-text);   border-color: rgba(114,184,245,0.15); }
-  .tag-amber  { background: var(--amber-bg);  color: var(--amber-text);  border-color: rgba(245,192,96,0.15); }
-  .tag-pink   { background: var(--pink-bg);   color: var(--pink-text);   border-color: rgba(232,154,212,0.15); }
-  .tag-green  { background: var(--green-bg);  color: var(--green-text);  border-color: rgba(128,217,106,0.15); }
-  .tag-gray   { background: var(--gray-bg);   color: var(--gray-text);   border-color: rgba(160,168,181,0.12); }
+  .tag-purple { background: rgba(83,74,183,0.18);  color: #b8a9f5; border: 1px solid rgba(83,74,183,0.25); }
+  .tag-teal   { background: rgba(15,110,86,0.18);   color: #5ddcb0; border: 1px solid rgba(15,110,86,0.25); }
+  .tag-coral  { background: rgba(153,60,29,0.18);   color: #f5a07a; border: 1px solid rgba(153,60,29,0.28); }
+  .tag-blue   { background: rgba(24,95,165,0.18);   color: #72b8f5; border: 1px solid rgba(24,95,165,0.25); }
+  .tag-amber  { background: rgba(201,168,76,0.12);  color: var(--gold-light); border: 1px solid rgba(201,168,76,0.22); }
+  .tag-pink   { background: rgba(153,53,86,0.18);   color: #e89ad4; border: 1px solid rgba(153,53,86,0.25); }
+  .tag-green  { background: rgba(59,109,17,0.18);   color: #80d96a; border: 1px solid rgba(59,109,17,0.25); }
+  .tag-gray   { background: var(--surface); color: var(--gray); border: 1px solid #2a2200; }
 
-  .badge {
+  .cert-badge {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 10.5px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
     padding: 3px 10px;
-    border-radius: 4px;
-    background: rgba(245,192,96,0.1);
-    color: var(--amber-text);
-    border: 0.5px solid rgba(245,192,96,0.3);
-    font-weight: 500;
-    letter-spacing: 0.03em;
+    border-radius: 3px;
+    background: rgba(201,168,76,0.1);
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    letter-spacing: 0.3px;
   }
 
-  .badge::before { content: '★'; font-size: 9px; }
+  /* ── FOOTER ── */
+  .full-divider { width: 100%; height: 1px; background: var(--border); }
 
-  /* fade-in animation */
-  .section {
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeUp 0.4s ease forwards;
-  }
-  .section:nth-child(1)  { animation-delay: 0.05s; }
-  .section:nth-child(2)  { animation-delay: 0.10s; }
-  .section:nth-child(3)  { animation-delay: 0.15s; }
-  .section:nth-child(4)  { animation-delay: 0.20s; }
-  .section:nth-child(5)  { animation-delay: 0.25s; }
-  .section:nth-child(6)  { animation-delay: 0.30s; }
-  .section:nth-child(7)  { animation-delay: 0.35s; }
-  .section:nth-child(8)  { animation-delay: 0.40s; }
-  .section:nth-child(9)  { animation-delay: 0.45s; }
-  .section:nth-child(10) { animation-delay: 0.50s; }
-  .section:nth-child(11) { animation-delay: 0.55s; }
-
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
+  footer {
+    padding: 24px 40px;
+    text-align: center;
+    border-top: 1px solid var(--border);
   }
 
-  /* light mode override */
-  @media (prefers-color-scheme: light) {
-    :root {
-      --bg: #f5f6f8;
-      --surface: #ffffff;
-      --surface2: #fafafa;
-      --border: rgba(0,0,0,0.08);
-      --border-strong: rgba(0,0,0,0.15);
-      --text: #111318;
-      --muted: #6b7280;
-      --accent: #0369a1;
-
-      --purple-bg: #EEEDFE; --purple-text: #3C3489;
-      --teal-bg: #E1F5EE;   --teal-text: #085041;
-      --coral-bg: #FAECE7;  --coral-text: #712B13;
-      --blue-bg: #E6F1FB;   --blue-text: #0C447C;
-      --amber-bg: #FAEEDA;  --amber-text: #633806;
-      --pink-bg: #FBEAF0;   --pink-text: #72243E;
-      --green-bg: #EAF3DE;  --green-text: #27500A;
-      --gray-bg: #F1EFE8;   --gray-text: #444441;
-    }
-    .badge {
-      background: #FAEEDA;
-      color: #633806;
-      border-color: rgba(186,117,23,0.3);
-    }
-  }
+  footer p { font-size: 12px; color: var(--gray); }
+  footer span { color: var(--gold); }
+  footer a { color: var(--gold-dim); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
 
   @media (max-width: 600px) {
-    body { padding: 2rem 1rem; }
-    .skills-header p { font-size: 22px; }
+    nav { padding: 12px 20px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 11px; }
+    .page-hero { padding: 110px 20px 40px; }
+    .skills-wrapper { padding: 0 20px 60px; }
+    .sec-title { font-size: 30px; }
     .tag { font-size: 11px; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">ARV</a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
+    <li><a href="index.html#certs">Certifications</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="skills-matrix.html" class="active">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="sec-label">Technical Expertise</div>
+  <h1 class="sec-title">Skills Matrix</h1>
+  <div class="sec-rule"></div>
+  <p class="sec-desc">Hands-on across the full security stack — detection engineering, threat intelligence, cloud security, IAM, and AI-native tooling.</p>
+</div>
+
+<!-- SKILLS -->
 <div class="skills-wrapper">
 
-  <div class="skills-header">
-    <h2>// technical skills</h2>
-    <p>Security Engineering & Detection</p>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">SIEM & Monitoring</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">SIEM & Monitoring</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-purple">Splunk (SPL, dashboards, alert tuning)</span>
       <span class="tag tag-purple">Wazuh HIDS</span>
       <span class="tag tag-purple">Azure Sentinel</span>
@@ -230,12 +321,12 @@
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">Threat Detection & Incident Response</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Threat Detection & Incident Response</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-coral">MITRE ATT&CK</span>
       <span class="tag tag-coral">Sigma rules</span>
       <span class="tag tag-coral">YARA rules</span>
@@ -248,12 +339,12 @@
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">Threat Intelligence</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Threat Intelligence</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-teal">ThreatConnect</span>
       <span class="tag tag-teal">MISP</span>
       <span class="tag tag-teal">OTX AlienVault</span>
@@ -265,12 +356,12 @@
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">IAM & Identity</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">IAM & Identity</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-blue">Active Directory</span>
       <span class="tag tag-blue">Azure AD / Entra ID</span>
       <span class="tag tag-blue">Conditional Access</span>
@@ -287,28 +378,28 @@
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">Cloud Security</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Cloud Security</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-amber">AWS IAM</span>
       <span class="tag tag-amber">CloudTrail</span>
       <span class="tag tag-amber">GuardDuty</span>
       <span class="tag tag-amber">S3 bucket policies</span>
       <span class="tag tag-amber">VPC security groups</span>
       <span class="tag tag-amber">Azure security baseline</span>
-      <span class="badge">AWS CCP Certified</span>
+      <span class="cert-badge">★ AWS CCP Certified</span>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">Network & Endpoint Security</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Network & Endpoint Security</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-teal">TCP/IP</span>
       <span class="tag tag-teal">DNS</span>
       <span class="tag tag-teal">HTTP/S</span>
@@ -323,39 +414,39 @@
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">Penetration Testing</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Penetration Testing</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-pink">Metasploit</span>
       <span class="tag tag-pink">Burp Suite</span>
       <span class="tag tag-pink">OWASP Top 10</span>
       <span class="tag tag-pink">PortSwigger Web Academy</span>
-      <span class="badge">eJPTv2 Certified</span>
+      <span class="cert-badge">★ eJPTv2 Certified</span>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">API Security</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">API Security</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-coral">OWASP API Top 10</span>
       <span class="tag tag-coral">REST API security testing</span>
       <span class="tag tag-coral">API authentication flaws</span>
-      <span class="badge">CASA-APIsec Certified</span>
+      <span class="cert-badge">★ CASA-APIsec Certified</span>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">Scripting & Automation</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Scripting & Automation</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-green">Python</span>
       <span class="tag tag-green">PowerShell</span>
       <span class="tag tag-green">Bash</span>
@@ -369,12 +460,12 @@
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">Frameworks & Standards</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Frameworks & Standards</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-purple">NIST CSF</span>
       <span class="tag tag-purple">NIST SP 800-61</span>
       <span class="tag tag-purple">MITRE ATT&CK</span>
@@ -384,12 +475,12 @@
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span class="section-icon">◈</span>
-      <span class="section-title">Tools & Platforms</span>
+  <div class="skill-section">
+    <div class="skill-header">
+      <span class="skill-icon">◈</span>
+      <span class="skill-title">Tools & Platforms</span>
     </div>
-    <div class="section-body">
+    <div class="skill-body">
       <span class="tag tag-gray">REMnux</span>
       <span class="tag tag-gray">FlareVM</span>
       <span class="tag tag-gray">VirtualBox</span>
@@ -402,6 +493,12 @@
   </div>
 
 </div>
+
+<div class="full-divider"></div>
+
+<footer>
+  <p>© 2026 <span>Anvesh Raju Vishwaraju</span> · Cybersecurity Professional · Hyderabad, India &nbsp;·&nbsp; <a href="index.html">← Back to Portfolio</a></p>
+</footer>
 
 </body>
 </html>
