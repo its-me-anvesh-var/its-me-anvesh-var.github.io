@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services — Anvesh Raju Vishwaraju</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: #7a6028;
+    --black: #080808;
+    --surface: #111111;
+    --surface2: #191919;
+    --border: #222200;
+    --white: #F0F0F0;
+    --gray: #888;
+    --gray-light: #bbb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,8,8,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: var(--gold); letter-spacing: 1px; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--gold) !important; }
+
+  .page-hero { padding: 140px 40px 60px; max-width: 1100px; margin: 0 auto; position: relative; }
+  .page-hero::after { content: ''; position: absolute; top: 80px; left: -100px; width: 500px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; }
+  .sec-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 12px; }
+  .sec-rule { width: 48px; height: 2px; background: var(--gold); margin-bottom: 16px; }
+  .sec-desc { font-size: 14px; color: var(--gray); max-width: 560px; line-height: 1.8; }
+
+  .services-wrapper { max-width: 1100px; margin: 0 auto; padding: 0 40px 80px; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.45s ease forwards;
+  }
+  .service-card:nth-child(1) { animation-delay: 0.05s; }
+  .service-card:nth-child(2) { animation-delay: 0.10s; }
+  .service-card:nth-child(3) { animation-delay: 0.15s; }
+  .service-card:nth-child(4) { animation-delay: 0.20s; }
+  .service-card:nth-child(5) { animation-delay: 0.25s; }
+  .service-card:nth-child(6) { animation-delay: 0.30s; }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold-dim), transparent); transition: background 0.3s; }
+  .service-card:hover { border-color: var(--gold-dim); transform: translateY(-6px); }
+  .service-card:hover::before { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+  .service-icon { font-size: 32px; margin-bottom: 16px; }
+  .service-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+  .service-desc { font-size: 13px; color: var(--gray); line-height: 1.75; margin-bottom: 20px; }
+
+  .service-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .service-price { font-size: 13px; font-weight: 600; color: var(--gold); letter-spacing: 0.3px; }
+  .service-cta { font-size: 12px; color: var(--gold-dim); text-decoration: none; border: 1px solid var(--gold-dim); padding: 6px 14px; border-radius: 3px; transition: all 0.2s; }
+  .service-cta:hover { color: var(--gold); border-color: var(--gold); background: rgba(201,168,76,0.08); }
+
+  .cta-banner { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 40px; text-align: center; margin-top: 40px; position: relative; overflow: hidden; }
+  .cta-banner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .cta-banner h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+  .cta-banner p { font-size: 14px; color: var(--gray); margin-bottom: 24px; }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: #000; padding: 12px 28px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 13px; letter-spacing: 0.5px; transition: background 0.2s, transform 0.2s; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { border: 1px solid var(--gold-dim); color: var(--gold); padding: 12px 28px; border-radius: 4px; text-decoration: none; font-weight: 400; font-size: 13px; letter-spacing: 0.5px; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); transform: translateY(-2px); }
+
+  .full-divider { width: 100%; height: 1px; background: var(--border); }
+  footer { padding: 24px 40px; text-align: center; border-top: 1px solid var(--border); }
+  footer p { font-size: 12px; color: var(--gray); }
+  footer span { color: var(--gold); }
+  footer a { color: var(--gold-dim); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+
+  @media (max-width: 640px) {
+    nav { padding: 12px 20px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 11px; }
+    .page-hero { padding: 110px 20px 40px; }
+    .services-wrapper { padding: 0 20px 60px; }
+    .sec-title { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">ARV</a>
+  <ul class="nav-links">
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="certs.html">Certifications</a></li>
+    <li><a href="skills-matrix.html">Skills</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="sec-label">What I Offer</div>
+  <h1 class="sec-title">Freelance Services</h1>
+  <div class="sec-rule"></div>
+  <p class="sec-desc">Practical, hands-on cybersecurity services for Indian SMBs, startups, and enterprises — from detection engineering to compliance readiness.</p>
+</div>
+
+<div class="services-wrapper">
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">🛡️</div>
+      <div class="service-title">Splunk Detection Rules</div>
+      <div class="service-desc">Custom MITRE ATT&CK mapped detection rules — brute force, lateral movement, exfiltration, PowerShell abuse, and more. Delivered as SPL with full documentation and ATT&CK technique mapping.</div>
+      <div class="service-footer">
+        <span class="service-price">From $150 · 5 rules per pack</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20I%20need%20Splunk%20detection%20rules" class="service-cta" target="_blank">Enquire →</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <div class="service-title">Wazuh SIEM Setup & Tuning</div>
+      <div class="service-desc">End-to-end Wazuh deployment, agent configuration, custom rule writing, and dashboard setup. Turn-key open-source SIEM for SMBs and startups. Includes MITRE ATT&CK mapped rules and incident response playbooks.</div>
+      <div class="service-footer">
+        <span class="service-price">From $200 · Delivered in 1 week</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20I%20need%20Wazuh%20SIEM%20setup" class="service-cta" target="_blank">Enquire →</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🔎</div>
+      <div class="service-title">Threat Intel & OSINT Report</div>
+      <div class="service-desc">IOC enrichment across OTX, VirusTotal, Shodan. OSINT investigation on suspicious domains, IPs, and threat actors. TLP-classified deliverable covering indicators, TTPs, and recommended mitigations.</div>
+      <div class="service-footer">
+        <span class="service-price">From $100 per investigation</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20I%20need%20a%20threat%20intel%20report" class="service-cta" target="_blank">Enquire →</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <div class="service-title">Security Policy Drafting</div>
+      <div class="service-desc">DPDP Act and ISO 27001 aligned security policies — Password Policy, AUP, Incident Response, Data Classification, and more. Audit-ready documentation delivered within 5 business days.</div>
+      <div class="service-footer">
+        <span class="service-price">From ₹15,000 · 3-policy pack</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20I%20need%20security%20policies" class="service-cta" target="_blank">Enquire →</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <div class="service-title">Security Awareness Training</div>
+      <div class="service-desc">1-hour live training for non-technical staff — phishing, social engineering, safe browsing, UPI fraud. Online or on-site delivery. Includes PDF takeaway and assessment quiz.</div>
+      <div class="service-footer">
+        <span class="service-price">From ₹8,000 per session</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20I%20need%20security%20awareness%20training" class="service-cta" target="_blank">Enquire →</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <div class="service-title">SIEM Health Check</div>
+      <div class="service-desc">Audit your existing SIEM setup — log source coverage gaps, MITRE ATT&CK coverage analysis, alert tuning recommendations, and false positive reduction strategy. Delivered as an executive-ready gap report.</div>
+      <div class="service-footer">
+        <span class="service-price">From $150 · Full gap report</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20I%20need%20a%20SIEM%20health%20check" class="service-cta" target="_blank">Enquire →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cta-banner">
+    <h3>Not sure what you need?</h3>
+    <p>Let's have a 15-minute call. I'll assess your current security posture and recommend exactly what makes sense for your size and budget.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20I%20want%20to%20discuss%20my%20security%20needs" class="btn-primary" target="_blank">WhatsApp Me</a>
+      <a href="mailto:anvesh65422@gmail.com?subject=Security Consultation Request" class="btn-outline">Send Email</a>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+<footer>
+  <p>© 2026 <span>Anvesh Raju Vishwaraju</span> · Cybersecurity Professional · Hyderabad, India &nbsp;·&nbsp; <a href="index.html">← Back to Portfolio</a></p>
+</footer>
+
+<script>
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if (link.href === window.location.href) link.classList.add('active');
+  });
+</script>
+</body>
+</html>

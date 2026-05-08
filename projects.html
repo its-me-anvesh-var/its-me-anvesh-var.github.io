@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Projects — Anvesh Raju Vishwaraju</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold: #C9A84C; --gold-light: #E8C96A; --gold-dim: #7a6028;
+    --black: #080808; --surface: #111111; --surface2: #191919;
+    --border: #222200; --white: #F0F0F0; --gray: #888; --gray-light: #bbb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,8,8,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: var(--gold); letter-spacing: 1px; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--gold) !important; }
+
+  .page-hero { padding: 140px 40px 60px; max-width: 1100px; margin: 0 auto; position: relative; }
+  .page-hero::after { content: ''; position: absolute; top: 80px; left: -100px; width: 500px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; }
+  .sec-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 12px; }
+  .sec-rule { width: 48px; height: 2px; background: var(--gold); margin-bottom: 16px; }
+  .sec-desc { font-size: 14px; color: var(--gray); max-width: 560px; line-height: 1.8; }
+
+  .projects-wrapper { max-width: 1100px; margin: 0 auto; padding: 0 40px 80px; }
+  .repos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+
+  .repo-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 26px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: border-color 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.45s ease forwards;
+    position: relative;
+    overflow: hidden;
+  }
+  .repo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dim), transparent); transition: background 0.3s; }
+  .repo-card:hover { border-color: var(--gold-dim); transform: translateY(-4px); }
+  .repo-card:hover::before { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+  .repo-card:nth-child(1) { animation-delay: 0.05s; }
+  .repo-card:nth-child(2) { animation-delay: 0.10s; }
+  .repo-card:nth-child(3) { animation-delay: 0.15s; }
+  .repo-card:nth-child(4) { animation-delay: 0.20s; }
+  .repo-card:nth-child(5) { animation-delay: 0.25s; }
+  .repo-card:nth-child(6) { animation-delay: 0.30s; }
+  .repo-card:nth-child(7) { animation-delay: 0.35s; }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .repo-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .repo-icon { font-size: 20px; }
+  .repo-name { font-family: 'DM Sans', monospace; font-size: 14px; font-weight: 600; color: var(--gold); }
+  .repo-desc { font-size: 13px; color: var(--gray); line-height: 1.7; margin-bottom: 16px; flex: 1; }
+  .repo-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .tag { background: var(--surface2); border: 1px solid #2a2200; border-radius: 3px; padding: 2px 8px; font-size: 10px; color: var(--gold-dim); font-weight: 500; letter-spacing: 0.3px; }
+  .repo-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--border); margin-top: auto; }
+  .repo-link { font-size: 11px; color: var(--gold-dim); letter-spacing: 0.5px; transition: color 0.2s; }
+  .repo-card:hover .repo-link { color: var(--gold); }
+  .repo-arrow { font-size: 14px; color: var(--gold-dim); transition: color 0.2s, transform 0.2s; }
+  .repo-card:hover .repo-arrow { color: var(--gold); transform: translateX(4px); }
+
+  .github-banner { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 36px; text-align: center; margin-top: 40px; position: relative; overflow: hidden; }
+  .github-banner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .github-banner h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .github-banner p { font-size: 13px; color: var(--gray); margin-bottom: 20px; }
+  .btn-outline { border: 1px solid var(--gold-dim); color: var(--gold); padding: 12px 28px; border-radius: 4px; text-decoration: none; font-weight: 400; font-size: 13px; letter-spacing: 0.5px; transition: all 0.2s; display: inline-block; }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); transform: translateY(-2px); }
+
+  .full-divider { width: 100%; height: 1px; background: var(--border); }
+  footer { padding: 24px 40px; text-align: center; border-top: 1px solid var(--border); }
+  footer p { font-size: 12px; color: var(--gray); }
+  footer span { color: var(--gold); }
+  footer a { color: var(--gold-dim); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+
+  @media (max-width: 640px) {
+    nav { padding: 12px 20px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 11px; }
+    .page-hero { padding: 110px 20px 40px; }
+    .projects-wrapper { padding: 0 20px 60px; }
+    .sec-title { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">ARV</a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="certs.html">Certifications</a></li>
+    <li><a href="skills-matrix.html">Skills</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="sec-label">GitHub Portfolio</div>
+  <h1 class="sec-title">Security Projects</h1>
+  <div class="sec-rule"></div>
+  <p class="sec-desc">7 open-source security projects spanning SOC engineering, adversarial ML, threat intelligence, and AI-native cybersecurity tooling.</p>
+</div>
+
+<div class="projects-wrapper">
+  <div class="repos-grid">
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/soc-home-lab" target="_blank">
+      <div class="repo-header"><span class="repo-icon">🛡️</span><span class="repo-name">soc-home-lab</span></div>
+      <p class="repo-desc">Full home SOC lab — Wazuh + Splunk + Suricata with MITRE ATT&CK mapped detection rules, incident response playbooks, and Active Directory attack simulation.</p>
+      <div class="repo-tags"><span class="tag">Splunk</span><span class="tag">Wazuh</span><span class="tag">Suricata</span><span class="tag">MITRE ATT&CK</span><span class="tag">Detection Engineering</span></div>
+      <div class="repo-footer"><span class="repo-link">github.com/its-me-anvesh-var</span><span class="repo-arrow">→</span></div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/cybersecurity-rag-assistant" target="_blank">
+      <div class="repo-header"><span class="repo-icon">🤖</span><span class="repo-name">cybersecurity-rag-assistant</span></div>
+      <p class="repo-desc">Production-grade RAG pipeline (~1,500 lines) using LangChain, Claude API, ChromaDB, and Streamlit. Achieves 85% retrieval precision over a cybersecurity knowledge base with semantic search.</p>
+      <div class="repo-tags"><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">Claude API</span><span class="tag">Streamlit</span><span class="tag">RAG</span><span class="tag">NLP</span></div>
+      <div class="repo-footer"><span class="repo-link">github.com/its-me-anvesh-var</span><span class="repo-arrow">→</span></div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/bfsi-threat-intelligence" target="_blank">
+      <div class="repo-header"><span class="repo-icon">🏦</span><span class="repo-name">bfsi-threat-intelligence</span></div>
+      <p class="repo-desc">BFSI sector threat intelligence — IOC enrichment automation, threat actor profiling, and India-focused threat landscape reports using OTX AlienVault and VirusTotal APIs.</p>
+      <div class="repo-tags"><span class="tag">Python</span><span class="tag">OTX AlienVault</span><span class="tag">VirusTotal</span><span class="tag">BFSI</span><span class="tag">Threat Intel</span></div>
+      <div class="repo-footer"><span class="repo-link">github.com/its-me-anvesh-var</span><span class="repo-arrow">→</span></div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/malware-analysis-api-security" target="_blank">
+      <div class="repo-header"><span class="repo-icon">🦠</span><span class="repo-name">malware-analysis-api-security</span></div>
+      <p class="repo-desc">Malware analysis reports, YARA rules, and API security testing templates covering OWASP API Top 10 with Burp Suite findings and remediation guidance.</p>
+      <div class="repo-tags"><span class="tag">YARA</span><span class="tag">Burp Suite</span><span class="tag">REMnux</span><span class="tag">OWASP</span><span class="tag">FlareVM</span></div>
+      <div class="repo-footer"><span class="repo-link">github.com/its-me-anvesh-var</span><span class="repo-arrow">→</span></div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/ml-soc-alert-classifier" target="_blank">
+      <div class="repo-header"><span class="repo-icon">📊</span><span class="repo-name">ml-soc-alert-classifier</span></div>
+      <p class="repo-desc">Machine learning model (Random Forest + SMOTE) to classify SOC alerts as true/false positive — reducing analyst fatigue. Includes Flask API for real-time inference integration.</p>
+      <div class="repo-tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Flask</span><span class="tag">SMOTE</span><span class="tag">Random Forest</span></div>
+      <div class="repo-footer"><span class="repo-link">github.com/its-me-anvesh-var</span><span class="repo-arrow">→</span></div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/llm-threat-intel-summariser" target="_blank">
+      <div class="repo-header"><span class="repo-icon">🧠</span><span class="repo-name">llm-threat-intel-summariser</span></div>
+      <p class="repo-desc">LLM-powered threat intelligence summariser using Claude API, OTX AlienVault, and RSS feeds to auto-generate daily threat briefs — reducing analyst research time significantly.</p>
+      <div class="repo-tags"><span class="tag">Claude API</span><span class="tag">Python</span><span class="tag">OTX</span><span class="tag">LLM</span><span class="tag">FastAPI</span></div>
+      <div class="repo-footer"><span class="repo-link">github.com/its-me-anvesh-var</span><span class="repo-arrow">→</span></div>
+    </a>
+
+    <a class="repo-card" href="https://github.com/its-me-anvesh-var/adversarial-ml-security" target="_blank">
+      <div class="repo-header"><span class="repo-icon">⚔️</span><span class="repo-name">adversarial-ml-security</span></div>
+      <p class="repo-desc">FGSM and PGD adversarial attack simulation on neural networks with adversarial training defence. Research-grade PyTorch implementation — BFSI fraud detection context. Based on IDRBT thesis research.</p>
+      <div class="repo-tags"><span class="tag">PyTorch</span><span class="tag">FGSM</span><span class="tag">PGD</span><span class="tag">Adversarial ML</span><span class="tag">BFSI</span></div>
+      <div class="repo-footer"><span class="repo-link">github.com/its-me-anvesh-var</span><span class="repo-arrow">→</span></div>
+    </a>
+
+  </div>
+
+  <div class="github-banner">
+    <h3>View All on GitHub</h3>
+    <p>All projects are open-source with full documentation, README files, and setup guides.</p>
+    <a href="https://github.com/its-me-anvesh-var" target="_blank" class="btn-outline">github.com/its-me-anvesh-var →</a>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+<footer>
+  <p>© 2026 <span>Anvesh Raju Vishwaraju</span> · Cybersecurity Professional · Hyderabad, India &nbsp;·&nbsp; <a href="index.html">← Back to Portfolio</a></p>
+</footer>
+
+<script>
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if (link.href === window.location.href) link.classList.add('active');
+  });
+</script>
+</body>
+</html>
