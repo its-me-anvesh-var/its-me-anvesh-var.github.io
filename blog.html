@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog — Anvesh Raju Vishwaraju</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: #7a6028;
+    --black: #080808;
+    --surface: #111111;
+    --surface2: #191919;
+    --border: #222200;
+    --white: #F0F0F0;
+    --gray: #888;
+    --gray-light: #bbb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--gold) !important; }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    padding: 140px 40px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    top: 80px; left: -100px;
+    width: 500px; height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .sec-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .sec-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .sec-desc {
+    font-size: 14px;
+    color: var(--gray);
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  /* ── BLOG WRAPPER ── */
+  .blog-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  /* ── BLOG ITEM ── */
+  .blog-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  .blog-item:nth-child(odd)  { animation-delay: 0.05s; }
+  .blog-item:nth-child(even) { animation-delay: 0.10s; }
+
+  .blog-item:hover { border-color: var(--gold-dim); }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .blog-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .blog-info { flex: 1; }
+
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 5px;
+  }
+
+  .blog-category {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .blog-date {
+    font-size: 10px;
+    color: var(--gray);
+    letter-spacing: 0.5px;
+  }
+
+  .blog-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  .blog-arrow {
+    color: var(--gold-dim);
+    font-size: 18px;
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .blog-item:hover .blog-arrow { color: var(--gold); transform: translateX(4px); }
+  .blog-arrow.rotated { transform: rotate(90deg) !important; color: var(--gold) !important; }
+
+  /* ── BLOG CONTENT ── */
+  .blog-content {
+    display: none;
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    margin-top: -12px;
+  }
+
+  .blog-content.expanded {
+    display: block;
+    padding: 28px 32px;
+    margin-bottom: 12px;
+  }
+
+  .blog-full-text { font-size: 14px; line-height: 1.85; color: var(--gray-light); }
+  .blog-full-text p { margin-bottom: 16px; }
+  .blog-full-text p:last-child { margin-bottom: 0; }
+  .blog-full-text strong { color: var(--white); font-weight: 600; }
+  .blog-full-text em { color: var(--gray); font-style: italic; }
+  .blog-full-text code {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    background: var(--surface2);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: var(--gold-light);
+    border: 1px solid var(--border);
+  }
+
+  .blog-full-text pre {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: var(--gold-light);
+    margin: 14px 0;
+    line-height: 1.6;
+  }
+
+  /* ── CVE BADGE ── */
+  .cve-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    border-radius: 3px;
+    padding: 2px 8px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.3px;
+    margin-right: 6px;
+    font-family: 'Courier New', monospace;
+  }
+
+  .severity-critical { background: rgba(220,50,50,0.12); border-color: rgba(220,50,50,0.3); color: #f5a0a0; }
+  .severity-high     { background: rgba(220,120,30,0.12); border-color: rgba(220,120,30,0.3); color: #f5c07a; }
+
+  /* ── POST CTA ── */
+  .post-cta {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .cta-link {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .cta-link:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .cta-divider { color: var(--gray); font-size: 12px; }
+
+  /* ── FOOTER ── */
+  .full-divider { width: 100%; height: 1px; background: var(--border); }
+
+  footer {
+    padding: 24px 40px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  footer p { font-size: 12px; color: var(--gray); }
+  footer span { color: var(--gold); }
+  footer a { color: var(--gold-dim); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+
+  @media (max-width: 640px) {
+    nav { padding: 12px 20px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 11px; }
+    .page-hero { padding: 110px 20px 40px; }
+    .blog-wrapper { padding: 0 20px 60px; }
+    .sec-title { font-size: 30px; }
+    .blog-content.expanded { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">ARV</a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#certs">Certifications</a></li>
+    <li><a href="skills-matrix.html">Skills</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="sec-label">Thought Leadership</div>
+  <h1 class="sec-title">Latest Writing</h1>
+  <div class="sec-rule"></div>
+  <p class="sec-desc">Threat intelligence, detection engineering, career advice, and CVE breakdowns — written from hands-on experience in the Indian cybersecurity landscape.</p>
+</div>
+
+<!-- BLOG LIST -->
+<div class="blog-wrapper">
+  <div class="blog-list">
+
+    <!-- POST 1 -->
+    <div class="blog-item" onclick="togglePost('post1')">
+      <div class="blog-info">
+        <div class="blog-meta">
+          <span class="blog-category">BFSI · Compliance</span>
+          <span class="blog-date">Apr 2026</span>
+        </div>
+        <div class="blog-title">DPDP Act 2023 — What Indian Startups Actually Need To Do Right Now</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post1">→</span>
+    </div>
+    <div class="blog-content" id="post1">
+      <div class="blog-full-text">
+        <p><strong>The Digital Personal Data Protection (DPDP) Act 2023 is now in effect</strong>, and Indian startups — especially in fintech, edtech, and healthtech — need to understand what compliance actually looks like.</p>
+        <p><strong>1. Audit Your Data Flows</strong><br>Map what personal data you collect, where it's stored, who has access, and why you need it. Most startups fail here because they've never documented their data lifecycle.</p>
+        <p><strong>2. Implement Consent Mechanisms</strong><br>Users must give <em>explicit, informed consent</em> before you collect their data. Pre-ticked boxes don't count. Your consent flow must be clear, specific, and revocable.</p>
+        <p><strong>3. Appoint a Data Protection Officer (if required)</strong><br>If you process significant volumes of data, you'll need a designated DPO. Even if not mandated, having someone accountable is good practice.</p>
+        <p><strong>4. Update Your Privacy Policy</strong><br>Must explain what you collect and why, retention periods, user rights (access, correction, deletion), and your breach notification process.</p>
+        <p><strong>5. Build a Breach Response Plan</strong><br>DPDP requires breach notification to the Data Protection Board and affected users. You need a documented IR process — now, not when a breach happens.</p>
+        <p><strong>6. Review Third-Party Vendors</strong><br>Every SaaS tool, payment gateway, and analytics platform is a data processor. Ensure they're DPDP-compliant or you're liable for their violations.</p>
+        <p><strong>Penalties?</strong> Up to ₹250 crore for violations. <strong>Timeline?</strong> Rules are still being drafted, but don't wait. Start with data mapping, consent flows, and breach response. These take months to implement properly.</p>
+      </div>
+      <div class="post-cta">
+        <a href="https://www.linkedin.com/in/arv007/" class="cta-link" target="_blank">💬 Message on LinkedIn</a>
+        <span class="cta-divider">or</span>
+        <a href="mailto:anvesh65422@gmail.com?subject=DPDP Act Compliance Query" class="cta-link">📧 Email</a>
+        <span class="cta-divider">or</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20I%20read%20your%20DPDP%20post" class="cta-link" target="_blank">📱 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- POST 2 -->
+    <div class="blog-item" onclick="togglePost('post2')">
+      <div class="blog-info">
+        <div class="blog-meta">
+          <span class="blog-category">Detection Engineering</span>
+          <span class="blog-date">Mar 2026</span>
+        </div>
+        <div class="blog-title">5 Splunk Detection Rules Every SOC Analyst Should Have</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post2">→</span>
+    </div>
+    <div class="blog-content" id="post2">
+      <div class="blog-full-text">
+        <p>After building detection rules for SOC environments, these 5 Splunk queries are non-negotiable. They catch the most common attack patterns seen in real incidents.</p>
+        <p><strong>1. Brute Force Detection (RDP + SSH)</strong></p>
+        <pre>index=main sourcetype=WinEventLog:Security EventCode=4625
+| stats count by src_ip, user, host
+| where count > 10
+| eval severity="HIGH"</pre>
+        <p><strong>2. After-Hours Admin Login</strong></p>
+        <pre>index=main sourcetype=WinEventLog:Security EventCode=4624
+| eval hour=strftime(_time, "%H")
+| where (hour < 8 OR hour > 20) AND match(user, "(?i)admin")
+| table _time, user, src_ip, host</pre>
+        <p><strong>3. PowerShell Download Cradle</strong></p>
+        <pre>index=main sourcetype=WinEventLog:Security EventCode=4688
+  New_Process_Name="*powershell*"
+| where match(Process_Command_Line,
+    "(?i)invoke-webrequest|iwr|downloadstring")
+| table _time, user, Process_Command_Line, host</pre>
+        <p><strong>4. Large Data Exfiltration</strong></p>
+        <pre>index=network sourcetype=firewall_logs
+| stats sum(bytes_out) as total_bytes by src_ip, dest_ip
+| where total_bytes > 104857600
+| eval total_mb=round(total_bytes/1024/1024, 2)</pre>
+        <p><strong>5. New Local Admin Account Created</strong></p>
+        <pre>index=main sourcetype=WinEventLog:Security EventCode=4720
+| table _time, user, TargetUserName, host
+| eval severity="CRITICAL"</pre>
+        <p>These 5 rules cover MITRE ATT&CK techniques T1110 (Brute Force), T1059 (Execution), T1136 (Persistence), and T1041 (Exfiltration) — 80% of real-world incidents.<br><strong>Pro tip:</strong> Map all rules to ATT&CK and test with Atomic Red Team before deploying to production.</p>
+      </div>
+      <div class="post-cta">
+        <a href="https://www.linkedin.com/in/arv007/" class="cta-link" target="_blank">💬 Message on LinkedIn</a>
+        <span class="cta-divider">or</span>
+        <a href="mailto:anvesh65422@gmail.com?subject=Splunk Detection Rules" class="cta-link">📧 Email</a>
+        <span class="cta-divider">or</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20question%20about%20Splunk%20rules" class="cta-link" target="_blank">📱 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- POST 3 -->
+    <div class="blog-item" onclick="togglePost('post3')">
+      <div class="blog-info">
+        <div class="blog-meta">
+          <span class="blog-category">Home Lab</span>
+          <span class="blog-date">Feb 2026</span>
+        </div>
+        <div class="blog-title">How I Built a Home SOC Lab for ₹0 Using Free Open-Source Tools</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post3">→</span>
+    </div>
+    <div class="blog-content" id="post3">
+      <div class="blog-full-text">
+        <p>You don't need expensive licenses to build a real SOC lab. Here's how I built mine using 100% free tools.</p>
+        <p><strong>Stack:</strong> Wazuh (SIEM + HIDS) · Suricata (Network IDS) · VirtualBox · Kali Linux (attacker) · Windows 11 + Ubuntu 22.04 (victims)</p>
+        <p><strong>Architecture — Host-Only Network 192.168.56.0/24:</strong><br>
+        • .10 — Wazuh Manager (Ubuntu)<br>
+        • .20 — Windows 11 with Wazuh agent<br>
+        • .30 — Ubuntu web server with agent<br>
+        • .40 — Kali attacker</p>
+        <p><strong>What you can practice:</strong><br>
+        ✅ Brute force simulation (Hydra → Wazuh alert)<br>
+        ✅ Malware testing in isolated VM<br>
+        ✅ Incident response with real playbooks<br>
+        ✅ Custom MITRE ATT&CK mapped detection rules<br>
+        ✅ File integrity monitoring, process creation, network traffic analysis</p>
+        <p><strong>Total cost: ₹0.</strong> Setup time: one weekend. Wazuh install takes 20 minutes, agents 5 minutes each.</p>
+        <p>Saying "I built a Wazuh SIEM that detected lateral movement using FIM alerts" in an interview beats "I know SIEM theory" every time. Build it. Document it. Put it on GitHub.</p>
+      </div>
+      <div class="post-cta">
+        <a href="https://www.linkedin.com/in/arv007/" class="cta-link" target="_blank">💬 Message on LinkedIn</a>
+        <span class="cta-divider">or</span>
+        <a href="mailto:anvesh65422@gmail.com?subject=SOC Lab Setup" class="cta-link">📧 Email</a>
+        <span class="cta-divider">or</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20need%20help%20with%20SOC%20lab" class="cta-link" target="_blank">📱 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- POST 4 -->
+    <div class="blog-item" onclick="togglePost('post4')">
+      <div class="blog-info">
+        <div class="blog-meta">
+          <span class="blog-category">Threat Intelligence</span>
+          <span class="blog-date">Feb 2026</span>
+        </div>
+        <div class="blog-title">BFSI Threat Landscape India 2026 — Top Actors & Attack Vectors</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post4">→</span>
+    </div>
+    <div class="blog-content" id="post4">
+      <div class="blog-full-text">
+        <p>The Indian BFSI sector saw a 43% increase in cyber incidents in 2025. Here's what's actively targeting banks, fintechs, and insurance companies right now.</p>
+        <p><strong>SideCopy (Pakistan-linked APT)</strong><br><em>Target:</em> Indian banks + government · <em>TTPs:</em> Spear phishing → malicious LNK files → RAT deployment · <em>MITRE:</em> T1566.001, T1204.002</p>
+        <p><strong>Lazarus Group (North Korea)</strong><br><em>Target:</em> Banks (SWIFT fraud), cryptocurrency exchanges · <em>TTPs:</em> Supply chain, watering hole, social engineering · <em>MITRE:</em> T1195, T1078</p>
+        <p><strong>Local Cybercrime Groups</strong><br><em>Target:</em> UPI users, retail banking customers · <em>TTPs:</em> Vishing, SIM swap, fake banking apps, QR code fraud</p>
+        <p><strong>Top Attack Vectors 2026:</strong><br>
+        • Phishing — 44% of BFSI-targeted attacks<br>
+        • Ransomware — LockBit 3.0, BlackCat, Cl0p active<br>
+        • API attacks — BOLA/IDOR, OTP brute force, JWT manipulation (tripled since 2024)</p>
+        <p><strong>Recommended actions:</strong> DMARC enforcement · MFA on all privileged accounts · BFSI-specific SIEM detection rules · DPDP Act gap assessment · Join BFSI-ISAC for threat intel sharing.</p>
+        <p>Full threat report with IOCs on my GitHub: <em>bfsi-threat-intelligence</em></p>
+      </div>
+      <div class="post-cta">
+        <a href="https://www.linkedin.com/in/arv007/" class="cta-link" target="_blank">💬 Message on LinkedIn</a>
+        <span class="cta-divider">or</span>
+        <a href="mailto:anvesh65422@gmail.com?subject=BFSI Threat Intel" class="cta-link">📧 Email</a>
+        <span class="cta-divider">or</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20BFSI%20threat%20intel%20question" class="cta-link" target="_blank">📱 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- POST 5 -->
+    <div class="blog-item" onclick="togglePost('post5')">
+      <div class="blog-info">
+        <div class="blog-meta">
+          <span class="blog-category">Career</span>
+          <span class="blog-date">Jan 2026</span>
+        </div>
+        <div class="blog-title">From Student to SOC Analyst — Honest Roadmap for Indian Freshers</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post5">→</span>
+    </div>
+    <div class="blog-content" id="post5">
+      <div class="blog-full-text">
+        <p>Most "SOC roadmaps" are written by people who've never worked in a SOC. Here's what actually works in India's job market.</p>
+        <p><strong>Reality check:</strong> Entry-level pays ₹3.5–6 LPA. You'll start as L1. 80% is following playbooks, not hacking. Night shifts are common in year 1–2.</p>
+        <p><strong>Phase 1 — Foundations (3 months):</strong> TCP/IP, DNS, HTTP/S · Windows + Linux basics · Reading logs (Event Logs, Syslog) · MITRE ATT&CK framework<br><em>Resource:</em> Professor Messer's Security+ on YouTube (free)</p>
+        <p><strong>Phase 2 — Core Skills (3–4 months):</strong> CompTIA Security+ · One SIEM (Splunk free trial or Wazuh) · Build a home lab · Write 5–10 ATT&CK-mapped detection rules · Document everything on GitHub</p>
+        <p><strong>Phase 3 — Practice (2–3 months):</strong> TryHackMe SOC Level 1 · LetsDefend real scenarios · CyberDefenders blue team CTFs · Practice writing incident reports</p>
+        <p><strong>Phase 4 — Apply:</strong> MSSPs (TCS, Accenture, IBM X-Force) · Banks (HDFC, ICICI, SBI internal SOCs) · Product companies (Zscaler, Palo Alto, Crowdstrike India)</p>
+        <p><strong>Resume tip:</strong><br>❌ "Knowledge of SIEM tools"<br>✅ "Built Wazuh SIEM with 15 custom detection rules covering MITRE T1110, T1566, T1059"</p>
+        <p>Timeline: 8–12 months from zero to first SOC role if consistent. Questions? DM me — I was exactly where you are 3 years ago.</p>
+      </div>
+      <div class="post-cta">
+        <a href="https://www.linkedin.com/in/arv007/" class="cta-link" target="_blank">💬 Message on LinkedIn</a>
+        <span class="cta-divider">or</span>
+        <a href="mailto:anvesh65422@gmail.com?subject=SOC Career Roadmap" class="cta-link">📧 Email</a>
+        <span class="cta-divider">or</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20SOC%20career%20question" class="cta-link" target="_blank">📱 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- POST 6 -->
+    <div class="blog-item" onclick="togglePost('post6')">
+      <div class="blog-info">
+        <div class="blog-meta">
+          <span class="blog-category">Vulnerability Intelligence</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <div class="blog-title">Critical CVEs Actively Exploited in 2026 — Patch These Now</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post6">→</span>
+    </div>
+    <div class="blog-content" id="post6">
+      <div class="blog-full-text">
+        <p><strong>131 new CVEs are disclosed every day in 2026.</strong> The median time to exploit is now under 5 days. 32.1% of vulnerabilities are weaponized on or before CVE disclosure day. Here are the ones actively being exploited that every SOC team must know.</p>
+
+        <p><span class="cve-badge severity-critical">CVE-2026-33017</span><strong>Langflow RCE — CVSS: Critical</strong><br>
+        Unauthenticated remote code execution in the open-source AI platform Langflow via the <code>/api/v1/build_public_tmp/</code> endpoint. Attackers exploited this within <em>20 hours</em> of disclosure — before any public PoC existed. They built working exploits directly from the advisory.<br>
+        <em>MITRE:</em> T1190 · <em>Action:</em> Upgrade to Langflow 1.9.0+. Restrict public endpoint access immediately.</p>
+
+        <p><span class="cve-badge severity-critical">CVE-2026-21858</span><strong>n8n Authentication Bypass — CVSS: 10.0</strong><br>
+        Unauthenticated attackers can read arbitrary local files, forge admin sessions, and execute commands on n8n servers via a Content-Type confusion flaw. Affects all versions before 1.65.0. Nicknamed "Ni8mare."<br>
+        <em>MITRE:</em> T1078, T1083 · <em>Action:</em> Update to v1.121.0+. Audit all exposed n8n instances.</p>
+
+        <p><span class="cve-badge severity-critical">CVE-2026-20122 / 20128 / 20133</span><strong>Cisco Catalyst SD-WAN Manager</strong><br>
+        Three actively exploited flaws added to CISA KEV April 2026 — incorrect privileged API use, passwords in recoverable format, and sensitive info exposure to unauthenticated actors. Federal remediation deadline: April 23, 2026.<br>
+        <em>MITRE:</em> T1552, T1078 · <em>Action:</em> Apply Cisco patches. Rotate all SD-WAN credentials.</p>
+
+        <p><span class="cve-badge severity-critical">CVE-2025-36918</span><strong>Windows MSHTML RCE</strong><br>
+        Use-After-Free in the Windows MSHTML engine. Weaponized in spear-phishing against government and financial institutions — opening a document becomes a system-level breach. Microsoft issued emergency patch December 2025.<br>
+        <em>MITRE:</em> T1566.001, T1203 · <em>Action:</em> Apply Microsoft emergency patch. Disable MSHTML legacy rendering.</p>
+
+        <p><span class="cve-badge severity-high">CVE-2025-48700</span><strong>Zimbra ZCS XSS — Added CISA KEV Apr 2026</strong><br>
+        Cross-site scripting in Synacor Zimbra. Attackers execute arbitrary JavaScript in authenticated sessions — stealing session tokens and accessing mailbox contents.<br>
+        <em>MITRE:</em> T1185 · <em>Action:</em> Patch Zimbra. Review mail server logs for abnormal session activity.</p>
+
+        <p><strong>Key takeaway for 2026:</strong> CVSS scores alone are not enough. Prioritize by exploitability and real-world active exploitation status — not just severity. Subscribe to CISA KEV catalog alerts and act within 24 hours on critical additions.</p>
+      </div>
+      <div class="post-cta">
+        <a href="https://www.linkedin.com/in/arv007/" class="cta-link" target="_blank">💬 Message on LinkedIn</a>
+        <span class="cta-divider">or</span>
+        <a href="mailto:anvesh65422@gmail.com?subject=CVE Intelligence Query" class="cta-link">📧 Email</a>
+        <span class="cta-divider">or</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20CVE%20question" class="cta-link" target="_blank">📱 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- POST 7 -->
+    <div class="blog-item" onclick="togglePost('post7')">
+      <div class="blog-info">
+        <div class="blog-meta">
+          <span class="blog-category">Threat Landscape</span>
+          <span class="blog-date">Apr 2026</span>
+        </div>
+        <div class="blog-title">AI-Powered Ransomware in 2026 — The Threat Has Fully Automated</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post7">→</span>
+    </div>
+    <div class="blog-content" id="post7">
+      <div class="blog-full-text">
+        <p><strong>Ransomware is no longer just encryption.</strong> In 2026, it is an autonomous, AI-driven operation that handles reconnaissance, exploitation, lateral movement, and ransom negotiation — with minimal human involvement.</p>
+
+        <p><strong>1. Agentic AI in the attack chain</strong><br>
+        Ransomware groups now deploy AI agents to autonomously scan for targets, prioritize high-value victims, and trigger exploitation. IBM X-Force 2026 Threat Index reported a <strong>44% increase</strong> in attacks starting with exploitation of public-facing applications — accelerated by AI-enabled vulnerability discovery. Active ransomware groups surged <strong>49% year-over-year</strong>.</p>
+
+        <p><strong>2. Triple extortion is standard</strong><br>
+        Modern ransomware encrypts, steals data, <em>and</em> threatens regulatory violations (GDPR, DPDP Act). Average recovery cost 2026: <strong>$2.73 million</strong>. Healthcare average: <strong>$7.42 million</strong>.</p>
+
+        <p><strong>3. Supply chain as primary vector</strong><br>
+        Supply chain compromises have nearly quadrupled since 2020. Lotus Blossom (China-linked APT) hijacked the Notepad++ update channel via CVE-2025-15556, delivering Cobalt Strike Beacon and Chrysalis backdoor to thousands of endpoints — undetected for 6+ months.</p>
+
+        <p><strong>4. RaaS ecosystem is fragmenting</strong><br>
+        Smaller transient operators replaced large groups like LockBit. Harder to attribute, reuse leaked tooling, and use AI to automate what teams once did manually. Barriers to entry have collapsed.</p>
+
+        <p><strong>5. AI infrastructure itself is a target</strong><br>
+        CVE-2026-33017 (Langflow) and CVE-2026-21858 (n8n) show AI automation platforms are being weaponized within hours of vulnerability disclosure — a new and growing attack surface.</p>
+
+        <p><strong>What defenders should do:</strong><br>
+        ✅ Immutable, air-gapped backups — ransomware targets backup systems first<br>
+        ✅ EDR with behavioral detection, not signature-only AV<br>
+        ✅ Patch public-facing apps within 24 hours of critical CVE disclosure<br>
+        ✅ Network segmentation — assume breach, limit lateral movement<br>
+        ✅ Audit AI tool inventory — Langflow, n8n, and similar need hardening<br>
+        ✅ Monitor supply chain — every vendor is an attack surface</p>
+
+        <p><em>87% of security leaders identify AI-related vulnerabilities as the fastest-growing cyber risk in 2026 — World Economic Forum Global Cybersecurity Outlook 2026.</em></p>
+      </div>
+      <div class="post-cta">
+        <a href="https://www.linkedin.com/in/arv007/" class="cta-link" target="_blank">💬 Message on LinkedIn</a>
+        <span class="cta-divider">or</span>
+        <a href="mailto:anvesh65422@gmail.com?subject=Ransomware Defense Query" class="cta-link">📧 Email</a>
+        <span class="cta-divider">or</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20AI%20ransomware%20question" class="cta-link" target="_blank">📱 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- POST 8 -->
+    <div class="blog-item" onclick="togglePost('post8')">
+      <div class="blog-info">
+        <div class="blog-meta">
+          <span class="blog-category">APT & Nation-State</span>
+          <span class="blog-date">Apr 2026</span>
+        </div>
+        <div class="blog-title">Supply Chain Attacks & APT Activity 2026 — What Indian Orgs Must Know</div>
+      </div>
+      <span class="blog-arrow" id="arrow-post8">→</span>
+    </div>
+    <div class="blog-content" id="post8">
+      <div class="blog-full-text">
+        <p><strong>Supply chain attacks have nearly quadrupled since 2020.</strong> Nation-state actors are no longer just attacking your network — they're attacking the software, vendors, and tools you trust.</p>
+
+        <p><span class="cve-badge">CVE-2025-15556</span><strong>Lotus Blossom (China-linked) — Notepad++ Supply Chain</strong><br>
+        Hijacked Notepad++'s update channel June–December 2025. Victims received Cobalt Strike Beacon and the "Chrysalis" backdoor instead of a legitimate update. Added to CISA KEV February 2026. Operated undetected for 6+ months.<br>
+        <em>MITRE:</em> T1195.002 — Compromise Software Supply Chain, T1072 — Software Deployment Tools</p>
+
+        <p><span class="cve-badge">CVE-2026-21513</span><strong>APT28 / Fancy Bear (Russia) — Windows MSHTML</strong><br>
+        Russian state-sponsored group leveraged an MSHTML flaw via malicious Windows Shortcut (.lnk) files for multi-stage payload delivery. Targeting government and defence organizations. Recorded Future Risk Score: 99 (Very Critical).<br>
+        <em>MITRE:</em> T1566.002, T1547</p>
+
+        <p><strong>SideCopy (Pakistan-linked) — Active Q1–Q2 2026</strong><br>
+        Ongoing spear phishing campaigns targeting Indian banking and government employees. LNK files → RAT deployment → persistent access. Particularly active against BFSI sector employees in India.<br>
+        <em>MITRE:</em> T1566.001, T1204.002, T1055</p>
+
+        <p><strong>Why supply chain attacks are so dangerous:</strong><br>
+        • Abuse <em>trusted</em> channels — software updates, vendor integrations, open-source packages<br>
+        • Detection is harder — legitimate tools carry malicious payloads, bypass most AV<br>
+        • Blast radius is massive — one compromised vendor reaches thousands of customers<br>
+        • Dwell time is high — Lotus Blossom operated undetected for 6+ months</p>
+
+        <p><strong>PwC Annual Threat Dynamics 2026</strong> notes that motivations are blurring — ransomware groups trade stolen data, state actors use criminal tools, and North Korea-linked groups are industrializing fraudulent employment and crypto theft at scale. India's BFSI and government sectors remain priority targets.</p>
+
+        <p><strong>What to do:</strong><br>
+        ✅ Implement SBOM — know every software dependency<br>
+        ✅ Verify software update signatures before deployment<br>
+        ✅ Monitor third-party vendor access with PAM tools<br>
+        ✅ Deploy threat intel feeds covering APT IoCs (MISP, OTX AlienVault)<br>
+        ✅ Hunt for Cobalt Strike Beacon C2 traffic in network logs<br>
+        ✅ Block .lnk execution from untrusted sources via GPO</p>
+
+        <p><em>If you're in India's BFSI or government sector — assume you are a target. Build defences around that assumption.</em></p>
+      </div>
+      <div class="post-cta">
+        <a href="https://www.linkedin.com/in/arv007/" class="cta-link" target="_blank">💬 Message on LinkedIn</a>
+        <span class="cta-divider">or</span>
+        <a href="mailto:anvesh65422@gmail.com?subject=APT Supply Chain Query" class="cta-link">📧 Email</a>
+        <span class="cta-divider">or</span>
+        <a href="https://wa.me/917981293129?text=Hi%20Anvesh,%20supply%20chain%20attack%20question" class="cta-link" target="_blank">📱 WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="full-divider"></div>
+<footer>
+  <p>© 2026 <span>Anvesh Raju Vishwaraju</span> · Cybersecurity Professional · Hyderabad, India &nbsp;·&nbsp; <a href="index.html">← Back to Portfolio</a></p>
+</footer>
+
+<script>
+  function togglePost(postId) {
+    const content = document.getElementById(postId);
+    const arrow = document.getElementById('arrow-' + postId);
+    document.querySelectorAll('.blog-content').forEach(c => { if (c.id !== postId) c.classList.remove('expanded'); });
+    document.querySelectorAll('.blog-arrow').forEach(a => { if (a.id !== 'arrow-' + postId) a.classList.remove('rotated'); });
+    content.classList.toggle('expanded');
+    arrow.classList.toggle('rotated');
+  }
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if (link.href === window.location.href) link.classList.add('active');
+  });
+</script>
+
+</body>
+</html>
